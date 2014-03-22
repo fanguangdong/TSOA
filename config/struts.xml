@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 配置为开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    
+    <!-- 把扩展名配置为action -->
+	<constant name="struts.action.extension" value="action"/>
+	
+	<!-- 把主题配置为simple -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+
+    <package name="default" namespace="/" extends="struts-default">
+    
+		<action name="test" class="testAction">
+			<result name="success">/test.jsp</result>
+		</action>
+		
+		<action name="role_*" class="roleAction" method="{1}">
+			<result name="toList" type="redirectAction">role_list</result>
+			<result name="list">/WEB-INF/jsp/role/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/role/saveUI.jsp</result>
+		</action>
+		
+		<action name="department_*" class="departmentAction" method="{1}">
+			<result name="toList" type="redirectAction">department_list?parentId=${parentId}</result>
+			<result name="list">/WEB-INF/jsp/department/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/department/saveUI.jsp</result>
+		</action>
+		
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="toList" type="redirectAction">user_list?parentId=3</result>
+			<result name="list">/WEB-INF/jsp/user/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/user/saveUI.jsp</result>
+		</action>
+    </package>
+
+    <!-- Add packages here -->
+
+</struts> 

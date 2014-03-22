@@ -1,0 +1,56 @@
+package cn.ts987.oa.test;
+
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import cn.ts987.oa.action.DepartmentAction;
+import cn.ts987.oa.dao.IDepartmentDao;
+import cn.ts987.oa.domain.Department;
+
+public class SpringTest {
+	
+	private ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+	
+	//@Test
+	public void testBean() throws Exception {
+		TestAction testAction = (TestAction)ac.getBean("testAction");
+		System.out.println(testAction);
+	}
+	
+	@Test
+	public void testSessionFactory() throws Exception {
+		
+		SessionFactory sf = (SessionFactory)ac.getBean("sessionFactory");
+		
+		System.out.println(sf);
+	}   
+	
+	@Test
+	public void testTransaction() throws Exception {
+		TestService ts = (TestService)ac.getBean("testService");
+		ts.save(); 
+	} 
+
+	@Test
+	public void testDao() throws Exception {
+		
+		
+		
+	}
+	
+	@Test
+	public void testService() throws Exception {
+		
+	}
+	
+	@Test
+	public void testAction() throws Exception {
+		DepartmentAction da = (DepartmentAction) ac.getBean("departmentAction");
+	}
+	
+	
+}
