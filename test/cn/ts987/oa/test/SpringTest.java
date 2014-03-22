@@ -1,15 +1,11 @@
 package cn.ts987.oa.test;
 
-import java.util.List;
-
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.ts987.oa.action.DepartmentAction;
-import cn.ts987.oa.dao.IDepartmentDao;
-import cn.ts987.oa.domain.Department;
 
 public class SpringTest {
 	
