@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>${parent.name}&nbsp;</td>
 					<td>${description}&nbsp;</td>
 					<td>
-						<a onClick="return window.confirm('这将删除所有的下级部门，您确定要删除吗？')" href="department_delete.action?id=${id}">删除</a>
+						<a onClick="return window.confirm('这将删除所有的下级部门，您确定要删除吗？')" href="department_delete.action?id=${id}&parentId=${parentId}">删除</a>
 						<a href="department_updateUI.action?id=${id}">修改</a>
 					</td>
 				</tr>
