@@ -43,5 +43,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-log4j12-1.6.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/aspectjrt.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
