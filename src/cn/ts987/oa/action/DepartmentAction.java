@@ -4,35 +4,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import cn.ts987.oa.domain.Department;
-import cn.ts987.oa.service.DepartmentService;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 
 @Controller("departmentAction")
 @Scope("prototype")
-public class DepartmentAction extends ActionSupport implements ModelDriven<Department>{
+public class DepartmentAction extends BaseAction<Department>{
 
 	private static final long serialVersionUID = 1L;
 	
 	private long parentId;
-	
-	private Department model = new Department();
-	
-	@Override
-	public Department getModel() {
-		return model;
-	}
-	
-	@Resource(name="departmentService")
-	private DepartmentService departmentService;
 	
 	public String list() throws Exception {
 		List<Department> departmentList = null;

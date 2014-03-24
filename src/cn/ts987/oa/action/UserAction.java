@@ -2,47 +2,26 @@ package cn.ts987.oa.action;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Controller;
 
 import cn.ts987.oa.domain.Department;
 import cn.ts987.oa.domain.User;
-import cn.ts987.oa.service.DepartmentService;
-import cn.ts987.oa.service.UserService;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 
 @Controller("userAction")
-public class UserAction extends ActionSupport implements ModelDriven<User>{
+public class UserAction extends BaseAction<User>{
 
 	private static final long serialVersionUID = 1L;
 
 	private List<User> userList;
-	
-	private User model = new User();
-	
-	@Resource
-	private UserService userService;
-	
-	@Resource
-	private DepartmentService departmentService;
-
-	@Override
-	public User getModel() {
-		return model;
-	}
 	
 	public String list() throws Exception {
 		userList = userService.list();
 		System.out.println("userList size:  " + userList.size());
 		ActionContext.getContext().put("userList", userList);
 		
-		
 		return "list";
-		
 	}
 	
 	public String add() throws Exception {
