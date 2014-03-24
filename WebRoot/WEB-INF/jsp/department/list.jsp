@@ -1,22 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 
 <html>
 <head>
-	<base href="<%=basePath %>"/>
     <title>部门列表</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script language="javascript" src="script/jquery.js"></script>
-    <script language="javascript" src="script/pageCommon.js" charset="utf-8"></script>
-    <script language="javascript" src="script/PageUtils.js" charset="utf-8"></script>
-    <link type="text/css" rel="stylesheet" href="style/blue/pageCommon.css" />
-    <script type="text/javascript">
-    </script>
+   
+    <%@ include file="../common.jsp" %>
 </head>
 <body>
  
