@@ -5,8 +5,11 @@
 	<title>用户信息</title>
 	
 	<%@ include file="../common.jsp"  %>
+    
     <script type="text/javascript">
+    	alert(%{id});
     </script>
+    
 </head>
 <body>
 
@@ -23,7 +26,9 @@
 
 <!--显示表单内容-->
 <div id=MainArea>
-    <form action="user_add.action">
+
+    <s:form action="user_%{id == 0 ? 'add' : 'update'}.action">
+        <s:hidden name="id" disabled="true"></s:hidden>
         <div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
         	<img border="0" width="4" height="7" src="style/blue/images/item_point.gif" /> 用户信息 </div> 
         </div>
@@ -33,32 +38,36 @@
             <div class="ItemBlock">
                 <table cellpadding="0" cellspacing="0" class="mainForm">
                     <tr><td width="100">所属部门</td>
-                        <td><s:select cssClass="SelectStyle" list="#departmentList" headerKey="-1" headerValue="请选择所属部门" listKey="id" listValue="name">
+                        <td><s:select name="departmentId" cssClass="SelectStyle" list="#departmentList" headerKey="-1" headerValue="请选择所属部门" listKey="id" listValue="name">
                                
                             </s:select> 
                         </td>
                     </tr>
-                    <tr><td>登录名</td>               
-                        <td><input type="text" name="loginName" class="InputStyle"/> *
+                    <tr><td>登录名</td>              
+                        <td>
+                        	<s:textfield name="loginName" cssClass="InputStyle" /> *
 							（登录名要唯一）
 						</td>
                     </tr>
+                    
                     <tr><td>姓名</td>
-                        <td><input type="text" name="name" class="InputStyle"/> *</td>
+                        <td><s:textfield name="name" cssClass="InputStyle" /> *</td>
                     </tr>
+                    
 					<tr><td>性别</td>
-                        <td><input type="RADIO" name="sex" value="男" id="male"/><label for="male">男</label>
-							<input type="RADIO" name="sex" value="女" id="female"/><label for="female">女</label>
+					
+                        <td>
+                        	<s:radio name="gender" list="#{'1':'男', '0':'女' }"></s:radio>  
 						</td>
                     </tr>
 					<tr><td>联系电话</td>
-                        <td><input type="text" name="phoneNumber" class="InputStyle"/></td>
+                        <td><s:textfield name="phoneNumber" cssClass="InputStyle"/></td>
                     </tr>
                     <tr><td>E-mail</td>
-                        <td><input type="text" name="email" class="InputStyle"/></td>
+                        <td><s:textfield name="email" cssClass="InputStyle"/></td>
                     </tr>
                     <tr><td>备注</td>
-                        <td><textarea name="description" class="TextareaStyle"></textarea></td>
+                        <td><s:textarea name="description" cssClass="TextareaStyle"></s:textarea></td>
                     </tr>
                 </table>
             </div>
@@ -93,7 +102,7 @@
             <input type="image" src="style/images/save.png"/>
             <a href="javascript:history.go(-1);"><img src="style/images/goBack.png"/></a>
         </div>
-    </form>
+    </s:form>
 </div>
 
 <div class="Description">

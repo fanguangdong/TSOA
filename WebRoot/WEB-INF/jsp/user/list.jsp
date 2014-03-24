@@ -44,8 +44,8 @@
 	                <td>${department.name}&nbsp;</td>
 	                <td>&nbsp;</td>
 	                <td>${description}&nbsp;</td>
-	                <td><a onClick="return delConfirm()" href="list.html">删除</a>
-	                    <a href="saveUI.html">修改</a>
+	                <td><a onClick="return delConfirm()" href="user_delete.action?id=${id }">删除</a>
+	                    <a href="user_updateUI.action?id=${id }">修改</a>
 						<a href="#" onClick="return window.confirm('您确定要初始化密码为1234吗？')">初始化密码</a>
 	                </td>
             	</tr>
