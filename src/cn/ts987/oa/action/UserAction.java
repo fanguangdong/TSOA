@@ -2,6 +2,7 @@ package cn.ts987.oa.action;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
 import cn.ts987.oa.domain.Department;
@@ -16,6 +17,10 @@ public class UserAction extends BaseAction<User>{
 
 	private List<User> userList;
 	
+	private long id;
+	
+	private long departmentId;
+	
 	public String list() throws Exception {
 		userList = userService.list();
 		System.out.println("userList size:  " + userList.size());
@@ -25,10 +30,9 @@ public class UserAction extends BaseAction<User>{
 	}
 	
 	public String add() throws Exception {
-		User role = new User();
-		role.setName(model.getName());
-		role.setDescription(model.getDescription());
-		userService.add(role);
+		Department department = departmentService.findById(departmentId);
+		model.setDepartment(department);
+		userService.add(model);
 		return "toList";
 	}
 	
@@ -49,6 +53,8 @@ public class UserAction extends BaseAction<User>{
 		List<Department> departmentList = departmentService.findAll();
 		ActionContext.getContext().put("departmentList", departmentList);
 		
+		id = 0;
+		ActionContext.getContext().put("id", -1); 
 		return "saveUI";
 	}
 	
@@ -59,12 +65,30 @@ public class UserAction extends BaseAction<User>{
 		User role = userService.findById(model.getId());
 		ActionContext.getContext().getValueStack().push(role);
 		
+		//String param = ServletActionContext.getRequest().getParameter("id");
+		
 		return "saveUI";
 	}
 	
 	public String toList() throws Exception {
 		
 		return "toList";
+	}
+
+	public void setDepartmentId(long departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	public long getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public long getId() {
+		return id;
 	}
 
 	

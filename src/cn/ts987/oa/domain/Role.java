@@ -1,6 +1,7 @@
 package cn.ts987.oa.domain;
 
 import java.util.List;
+import java.util.Set;
 
 public class Role {
 	private long id;
@@ -9,7 +10,7 @@ public class Role {
 	
 	private String description;
 	
-	private List<User> users;
+	private Set<User> users;
 	
 
 	public long getId() {
@@ -36,13 +37,14 @@ public class Role {
 		this.description = description;
 	}
 
-	public void setUsers(List<User> users) {
+	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
 
-	public List<User> getUsers() {
+	public Set<User> getUsers() {
 		return users;
 	}
+
 	
 	
 }

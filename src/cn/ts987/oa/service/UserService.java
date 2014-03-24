@@ -2,19 +2,14 @@ package cn.ts987.oa.service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.ts987.oa.dao.IBaseDao;
+import cn.ts987.oa.domain.Department;
 import cn.ts987.oa.domain.User;
 
 @Service("userService")
-public class UserService {
-	
-	@Resource(name="userDao")
-	private IBaseDao<User> userDao;
+public class UserService extends BaseService{
 	
 	@Transactional
 	public List<User> list() {
