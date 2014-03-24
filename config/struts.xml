@@ -19,6 +19,10 @@
 			<result name="success">/test.jsp</result>
 		</action>
 		
+		<action name="home_*" class="homeAction" method="{1}">
+			<result name="{1}">/WEB-INF/jsp/home/{1}.jsp</result>
+		</action>
+		
 		<action name="role_*" class="roleAction" method="{1}">
 			<result name="toList" type="redirectAction">role_list</result>
 			<result name="list">/WEB-INF/jsp/role/list.jsp</result>
@@ -32,9 +36,9 @@
 		</action>
 		
 		<action name="user_*" class="userAction" method="{1}">
-			<result name="toList" type="redirectAction">user_list?parentId=3</result>
+			<result name="toList" type="redirectAction">user_list?parentId=${parentId}</result>
 			<result name="list">/WEB-INF/jsp/user/list.jsp</result>
-			<result name="saveUI">/WEB-INF/jsp/user/saveUI.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/user/saveUI.jsp?id=0</result> 
 		</action>
     </package>
 
