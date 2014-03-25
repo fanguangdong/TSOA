@@ -48,6 +48,7 @@ public class UserAction extends BaseAction<User>{
 		
 		user.setName(model.getName());
 		user.setLoginName(model.getLoginName());
+		user.setIdentity(model.getIdentity());
 		user.setGender(model.getGender());
 		user.setDescription(model.getDescription());
 		user.setEmail(model.getEmail());
