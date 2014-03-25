@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.ts987.oa.dao.UserDao;
 import cn.ts987.oa.domain.User;
 
 @Service("userService")
@@ -43,6 +44,11 @@ public class UserService extends BaseService{
 		List<Long> users = new ArrayList<Long>();
 		Collections.addAll(users, userIds);
 		return userDao.findByIds(users);
+	}
+
+	public User validateUser(String loginName, String password) {
+		
+		return ((UserDao)userDao).findByLoginNameAndPassword(loginName, password);
 	}
 	
 }

@@ -23,6 +23,16 @@ public class UserAction extends BaseAction<User>{
 	
 	private Long[] roleIds;
 	
+	public String login() {
+		User user = userService.validateUser(model.getLoginName(), model.getPassword());
+		if(user == null) {
+			return "loginFailed";
+		}
+		
+		ActionContext.getContext().getSession().put("user", user);
+		return "login";
+	}
+	
 	public String list() throws Exception {
 		userList = userService.list();
 		System.out.println("userList size:  " + userList.size());
