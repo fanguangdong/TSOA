@@ -12,6 +12,13 @@ public class Role {
 	
 	private Set<User> users;
 	
+	
+	@Override
+	public String toString() {
+		
+		return this.name;
+	}
+	
 
 	public long getId() {
 		return id;

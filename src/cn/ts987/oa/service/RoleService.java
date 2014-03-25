@@ -1,5 +1,7 @@
 package cn.ts987.oa.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -41,6 +43,21 @@ public class RoleService {
 	public Role findById(long id) {
 		
 		return roleDao.findById(id);
+	}
+	
+	@Transactional
+	public List<Role> findAll() {
+		return roleDao.findAll();
+	}
+
+	@Transactional
+	public List<Role> findByIds(Long[] roleIds) {
+		List<Long> roles = new ArrayList<Long>();
+		Collections.addAll(roles, roleIds);
+		if(roles.size() == 0) {
+			return Collections.emptyList();
+		}
+		return roleDao.findByIds(roles);
 	}
 	
 }

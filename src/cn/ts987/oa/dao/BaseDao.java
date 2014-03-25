@@ -43,6 +43,7 @@ public class BaseDao<T> implements IBaseDao<T>{
 	
 	@Override
 	public void update(T entity) {
+		
 		getSession().update(entity);
 		
 	}

@@ -1,11 +1,13 @@
 package cn.ts987.oa.action;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
 import cn.ts987.oa.domain.Department;
+import cn.ts987.oa.domain.Role;
 import cn.ts987.oa.domain.User;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -17,9 +19,9 @@ public class UserAction extends BaseAction<User>{
 
 	private List<User> userList;
 	
-	private long id;
-	
 	private long departmentId;
+	
+	private Long[] roleIds;
 	
 	public String list() throws Exception {
 		userList = userService.list();
@@ -32,18 +34,42 @@ public class UserAction extends BaseAction<User>{
 	public String add() throws Exception {
 		Department department = departmentService.findById(departmentId);
 		model.setDepartment(department);
+		
+		List<Role> userList = roleService.findByIds(roleIds);
+		Set<Role> userSet = new HashSet<Role>(userList);
+		model.setRoles(userSet);
+		
 		userService.add(model);
 		return "toList";
 	}
 	
 	public String update() throws Exception {
-		User role = userService.findById(model.getId());
-		role.setName(model.getName());
-		role.setDescription(model.getDescription());
-		userService.update(role);
+		User user = userService.findById(model.getId());
+		
+		user.setName(model.getName());
+		user.setLoginName(model.getLoginName());
+		user.setGender(model.getGender());
+		user.setDescription(model.getDescription());
+		user.setEmail(model.getEmail());
+		user.setPhoneNumber(model.getPhoneNumber());
+		
+		Department department = departmentService.findById(departmentId);
+		
+		user.setName(model.getName());
+		user.setDepartment(department);
+		
+		List<Role> userList = roleService.findByIds(roleIds);
+		
+		Set<Role> userSet = null;
+		if(userList != null && userList.size() > 0) {
+			userSet = new HashSet<Role>(userList);
+		}
+		user.setRoles(userSet);
+		
+		userService.update(user); 
 		return "toList";
 	}
-	
+	 
 	public String delete() throws Exception {
 		userService.delete(model.getId());
 		return "toList";
@@ -53,8 +79,16 @@ public class UserAction extends BaseAction<User>{
 		List<Department> departmentList = departmentService.findAll();
 		ActionContext.getContext().put("departmentList", departmentList);
 		
-		id = 0;
-		ActionContext.getContext().put("id", -1); 
+		List<Role> roles = roleService.findAll();
+		
+		Role[] roleList = new Role[roles.size()];
+		for(int i = 0; i < roles.size(); i++) {
+			roleList[i] = roles.get(i);
+		}
+		ActionContext.getContext().put("roleList", roleList);
+		
+		User user = new User();
+		ActionContext.getContext().getValueStack().push(user);
 		return "saveUI";
 	}
 	
@@ -62,9 +96,36 @@ public class UserAction extends BaseAction<User>{
 		List<Department> departmentList = departmentService.findAll();
 		ActionContext.getContext().put("departmentList", departmentList);
 		
-		User role = userService.findById(model.getId());
-		ActionContext.getContext().getValueStack().push(role);
+		User user = userService.findById(model.getId());
 		
+		if(user.getDepartment() != null) {
+			departmentId = user.getDepartment().getId();
+		} else {
+			departmentId = -1;
+		}
+		
+		List<Role> roles = roleService.findAll();
+		
+		if(roles.size() > 0) {
+			Role[] roleList = new Role[roles.size()];
+			for(int i = 0; i < roles.size(); i++) {
+				roleList[i] = roles.get(i);
+			}
+			ActionContext.getContext().put("roleList", roleList);
+		}
+		
+		ActionContext.getContext().getValueStack().push(user);
+		
+		Set<Role> roleSet = user.getRoles();
+		if(roleSet != null && roleSet.size() > 0) {
+			roleIds = new Long[roleSet.size()];
+			int index = 0; 
+			for(Role role : roleSet) {
+				roleIds[index++] = role.getId();
+			}
+		} else {
+			roleIds = null; 
+		}
 		//String param = ServletActionContext.getRequest().getParameter("id");
 		
 		return "saveUI";
@@ -83,15 +144,13 @@ public class UserAction extends BaseAction<User>{
 		return departmentId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setRoleIds(Long[] roleIds) {
+		this.roleIds = roleIds;
 	}
 
-	public long getId() {
-		return id;
+	public Long[] getRoleIds() {
+		return roleIds; 
 	}
 
 	
-	
-
 }
