@@ -6,6 +6,16 @@
     <%@ include file="../common.jsp" %>
    
     <script type="text/javascript">
+    	function mouseIn(a) {
+    		
+    		a.style.background='#F5F9FC';
+    	}
+    	
+    	function mouseOut(a) {
+    		a.style.background='#F5F9AC';
+    	}
+    	
+    	
     </script>
 </head>
 <body>
@@ -21,13 +31,17 @@
 </div>
 
 <div id="MainArea">
-    <table cellspacing="0" cellpadding="0" class="TableStyle">
+    <table cellspacing="0" cellpadding="0" class="TableStyle" >
        
         <!-- 表头-->
         <thead>
             <tr align=center valign=middle id=TableTitle>
                 <td width="100">登录名</td>
                 <td width="100">姓名</td>
+                <td width="40">性别</td>
+                <td width="110">身份证号</td>
+                <td width="100">电话</td>
+                <td width="100">邮箱</td>
                 <td width="100">所属部门</td>
                 <td width="200">岗位</td>
                 <td>备注</td>
@@ -36,13 +50,17 @@
         </thead>
         
         <!--显示数据列表-->
-        <tbody id="TableData" class="dataContainer">
+        <tbody id="TableData" class="dataContainer" >
         	<s:iterator value="#userList">
-        		<tr class="TableDetail1 template">
+        		<tr class="TableDetail1 template" >
 	                <td>${loginName}&nbsp;</td>
 	                <td>${name}&nbsp;</td>
+	                <td><s:property value="%{gender == 0 ? '女' : '男'}"/>&nbsp;</td>
+	                <td>${identity }</td>
+	                <td>${phoneNumber }</td>
+	                <td>${email }</td>
 	                <td>${department.name}&nbsp;</td>
-	                <td>&nbsp;</td>
+	                <td>${roles}</td>
 	                <td>${description}&nbsp;</td>
 	                <td><a onClick="return delConfirm()" href="user_delete.action?id=${id }">删除</a>
 	                    <a href="user_updateUI.action?id=${id }">修改</a>
@@ -62,6 +80,11 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    	$(".TableDetail1 template").click(function() {alert(33)});
+    	
+    	
+    </script>
 </body>
 </html>
 
