@@ -7,6 +7,7 @@ public class User {
 	private String name;
 	private String description;
 	private String loginName;
+	private String identity;
 	private String password;
 	private String gender;
 	private Department department;
@@ -73,6 +74,12 @@ public class User {
 	}
 	public Set<Role> getRoles() {
 		return roles;
+	}
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
+	public String getIdentity() {
+		return identity;
 	}
 
 	
