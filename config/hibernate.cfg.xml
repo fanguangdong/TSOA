@@ -30,6 +30,7 @@
 	<mapping resource="cn/ts987/oa/domain/User.hbm.xml" />
 	<mapping resource="cn/ts987/oa/domain/Role.hbm.xml" />
 	<mapping resource="cn/ts987/oa/domain/Department.hbm.xml" />
+	<mapping resource="cn/ts987/oa/domain/Privilege.hbm.xml" />
 
 
 </session-factory>
