@@ -39,7 +39,8 @@
                 <td width="100">登录名</td>
                 <td width="100">姓名</td>
                 <td width="40">性别</td>
-                <td width="110">身份证号</td>
+                <td width="100">入职日期</td>
+                <td width="100">身份证号</td>
                 <td width="100">电话</td>
                 <td width="100">邮箱</td>
                 <td width="100">所属部门</td>
@@ -56,7 +57,8 @@
 	                <td>${loginName}&nbsp;</td>
 	                <td>${name}&nbsp;</td>
 	                <td><s:property value="%{gender == 0 ? '女' : '男'}"/>&nbsp;</td>
-	                <td>${identity }</td>
+	                <td>${hiredate }</td>
+	                <td>${idCard }</td>
 	                <td>${phoneNumber }</td>
 	                <td>${email }</td>
 	                <td>${department.name}&nbsp;</td>

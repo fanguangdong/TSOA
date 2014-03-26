@@ -1,5 +1,6 @@
 package cn.ts987.oa.domain;
 
+import java.util.Date;
 import java.util.Set;
 
 public class User {
@@ -7,7 +8,8 @@ public class User {
 	private String name;
 	private String description;
 	private String loginName;
-	private String identity;
+	private Date hiredate;
+	private String idCard;
 	private String password;
 	private String gender;
 	private Department department;
@@ -75,13 +77,18 @@ public class User {
 	public Set<Role> getRoles() {
 		return roles;
 	}
-	public void setIdentity(String identity) {
-		this.identity = identity;
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
 	}
-	public String getIdentity() {
-		return identity;
+	public String getIdCard() {
+		return idCard;
+	}
+	public void setHiredate(Date hiredate) {
+		this.hiredate = hiredate;
+	}
+	public Date getHiredate() {
+		return hiredate;
 	}
 
-	
 	
 }

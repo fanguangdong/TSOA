@@ -23,14 +23,28 @@ public class UserAction extends BaseAction<User>{
 	
 	private Long[] roleIds;
 	
+	//用户登录UI
+	public String loginUI() {
+		
+		return "loginUI";
+	}
+	
+	//用户登陆
 	public String login() {
 		User user = userService.validateUser(model.getLoginName(), model.getPassword());
 		if(user == null) {
+			//addFieldError("login", "用户名和密码不正确！");
 			return "loginFailed";
 		}
 		
 		ActionContext.getContext().getSession().put("user", user);
-		return "login";
+		return "toIndex";
+	}
+	
+	//用户注销
+	public String logout() {
+		ActionContext.getContext().getSession().remove("user");
+		return "logout";
 	}
 	
 	public String list() throws Exception {
@@ -58,7 +72,7 @@ public class UserAction extends BaseAction<User>{
 		
 		user.setName(model.getName());
 		user.setLoginName(model.getLoginName());
-		user.setIdentity(model.getIdentity());
+		user.setIdCard(model.getIdCard());
 		user.setGender(model.getGender());
 		user.setDescription(model.getDescription());
 		user.setEmail(model.getEmail());
@@ -87,6 +101,9 @@ public class UserAction extends BaseAction<User>{
 	}
 	
 	public String addUI() throws Exception {
+		departmentId = -1;    //新增页面，部门下拉框及岗位多选栏为默认不选状态
+		roleIds = null;
+		
 		List<Department> departmentList = departmentService.findAll();
 		ActionContext.getContext().put("departmentList", departmentList);
 		
@@ -97,6 +114,7 @@ public class UserAction extends BaseAction<User>{
 			roleList[i] = roles.get(i);
 		}
 		ActionContext.getContext().put("roleList", roleList);
+		
 		
 		User user = new User();
 		ActionContext.getContext().getValueStack().push(user);

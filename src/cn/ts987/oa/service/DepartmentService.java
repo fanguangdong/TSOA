@@ -2,21 +2,15 @@ package cn.ts987.oa.service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ts987.oa.dao.DepartmentDao;
-import cn.ts987.oa.dao.IBaseDao;
 import cn.ts987.oa.domain.Department;
 
 @Service("departmentService")
 @Transactional
-public class DepartmentService {
-	
-	@Resource(name="departmentDao")
-	private IBaseDao<Department> departmentDao;
+public class DepartmentService extends BaseService{
 	
 	public List<Department> list() {
 		List<Department> roleList = departmentDao.findAll();

@@ -9,7 +9,7 @@
 <body class="PageBody" style="margin: 0">
  
 	<div id="Head1">
-		<div id="Logo">
+		<div id="Logo" >
 			<a id="msgLink" href="javascript:void(0)"></a>
             <font color="#0000CC" style="color:#F1F9FE; font-size:28px; font-family:Arial Black, Arial">天时传媒OA系统</font> 
 			<!--<img border="0" src="style/blue/images/logo.png" />-->
@@ -29,7 +29,7 @@
 		</div>
 		
         <div id="Head1Right_SystemButton">
-            <a target="_parent" href="System_User/logout.html">
+            <a target="_parent" href="user_logout.action">
 				<img width="78" height="20" alt="退出系统" src="style/blue/images/top/logout.gif" />
 			</a>
         </div>

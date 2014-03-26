@@ -61,7 +61,7 @@
 						</td>
                     </tr>
 					<tr><td>身份证号</td>
-                        <td><s:textfield name="identity" cssClass="InputStyle"/></td>
+                        <td><s:textfield name="idCard" cssClass="InputStyle"/></td>
                     </tr>
 					<tr><td>联系电话</td>
                         <td><s:textfield name="phoneNumber" cssClass="InputStyle"/></td>

@@ -1,6 +1,5 @@
 package cn.ts987.oa.domain;
 
-import java.util.List;
 import java.util.Set;
 
 public class Role {
@@ -12,10 +11,12 @@ public class Role {
 	
 	private Set<User> users;
 	
+	private Set<Privilege> privileges;
+	
+	
 	
 	@Override
 	public String toString() {
-		
 		return this.name;
 	}
 	
@@ -50,6 +51,16 @@ public class Role {
 
 	public Set<User> getUsers() {
 		return users;
+	}
+
+
+	public void setPrivileges(Set<Privilege> privileges) {
+		this.privileges = privileges;
+	}
+
+
+	public Set<Privilege> getPrivileges() {
+		return privileges;
 	}
 
 	

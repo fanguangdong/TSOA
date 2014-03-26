@@ -4,19 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.ts987.oa.dao.IBaseDao;
 import cn.ts987.oa.domain.Role;
 
 @Service
-public class RoleService {
-	
-	@Resource(name="roleDao")
-	private IBaseDao<Role> roleDao;
+public class RoleService extends BaseService{
 	
 	@Transactional
 	public List<Role> list() {

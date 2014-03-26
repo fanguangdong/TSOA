@@ -9,8 +9,6 @@ import javax.annotation.Resource;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import cn.ts987.oa.domain.User;
-
 @SuppressWarnings("unchecked")
 public class BaseDao<T> implements IBaseDao<T>{
 	

@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import javax.annotation.Resource;
 
 import cn.ts987.oa.service.DepartmentService;
+import cn.ts987.oa.service.PrivilegeService;
 import cn.ts987.oa.service.RoleService;
 import cn.ts987.oa.service.UserService;
 
@@ -51,6 +52,7 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 	@Resource
 	protected UserService userService;
 	
-	
+	@Resource
+	protected PrivilegeService privilegeService;
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import cn.ts987.oa.domain.Privilege;
 import cn.ts987.oa.domain.Role;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -15,6 +16,14 @@ public class RoleAction extends BaseAction<Role>{
 	private static final long serialVersionUID = 1L;
 	
 	private List<Role> roleList;
+	
+	
+	private List<Privilege> privilegeList;
+	
+	public String setPrivilegeUI() {
+		this.privilegeList = privilegeService.findAll();
+		return "setPrivilegeUI";
+	}
 	
 	public String list() throws Exception {
 		roleList = roleService.list();
@@ -60,6 +69,14 @@ public class RoleAction extends BaseAction<Role>{
 	public String toList() throws Exception {
 		
 		return "toList";
+	}
+
+	public void setPrivilegeList(List<Privilege> privilegeList) {
+		this.privilegeList = privilegeList;
+	}
+
+	public List<Privilege> getPrivilegeList() {
+		return privilegeList;
 	}
 
 	
