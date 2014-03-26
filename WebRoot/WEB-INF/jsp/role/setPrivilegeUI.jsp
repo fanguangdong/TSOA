@@ -88,41 +88,32 @@
 							<!-- 显示权限树 -->
 							<td>
 <ul id='tree'>
-
 	
 	<s:iterator value="privilegeList">
-		<li id='li_${id }'>
-		<input type='checkbox' name='resourceIdList' id='cb_45' onclick='doChecked("li_45", this.checked)'/>
-		<label for='cb_${id }'><span class='folder' id='cb_${id }'>${name }</span></label>
+	<li>
+		<input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}" <s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
+		<label for="cb_${id}"><span class="folder">${name}</span></label>
 		<ul>
-			
-			<s:iterator value="children">
-				<li id='li_${id }'>
-				<input type='checkbox' name='resourceIdList' id='cb_48' onclick='doChecked("li_48", this.checked)'/>
-				<label for='cb_${id }'><span class='folder' id='cb_${id }'>${name }</span></label>
+		<s:iterator value="children">
+			<li>
+				<input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}" <s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
+				<label for="cb_${id}"><span class="folder">${name}</span></label>
 				<ul>
-					
-					<s:iterator value="children">
-						<li id='li_${id }'>
-						<input type='checkbox' name='resourceIdList' id='cb_38' onclick='doChecked("li_38", this.checked)'/>
-						<label for='cb_${id }'><span class='folder' id='li_${id }'>${name }</span></label>
-						</li>
-					</s:iterator>
-					
+				<s:iterator value="children">
+					<li>
+						<input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}" <s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
+						<label for="cb_${id}"><span class="folder">${name}</span></label>
+					</li>
+				</s:iterator>
 				</ul>
-			</li>
-			</s:iterator>
-			
+			</li>		
+		</s:iterator>
 		</ul>
 	</li>
-	</s:iterator>
-	
-	
-	
-	
-	
+</s:iterator>
 	
 </ul>
+
 </td>
 						</tr>
 					</tbody>
