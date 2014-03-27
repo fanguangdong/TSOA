@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.ts987.oa.action.DepartmentAction;
 
-public class SpringTest {
+public class SpringTest { 
 	
 	private ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 	
