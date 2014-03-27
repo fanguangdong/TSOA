@@ -1,7 +1,10 @@
 package cn.ts987.oa.domain;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
+
+import com.opensymphony.xwork2.ActionContext;
 
 public class User {
 	private long id;
@@ -16,6 +19,45 @@ public class User {
 	private String phoneNumber;
 	private String email;
 	private Set<Role> roles;
+	
+	/**
+	 * 判断此User是否有uri的权限   
+	 * @param uri
+	 * @return
+	 */
+	public boolean hasPrivilege(String uri) {
+		//admin是超级管理员，具有所有权限
+		if("admin".equals(this.loginName)) {
+			return true;
+		}
+		if(uri == null) 
+			return false;
+		
+		int pos = uri.indexOf("?");
+		if(pos != -1) {
+			uri = uri.substring(0, pos);
+		}
+		int actionPos = uri.indexOf(".action");
+		if(pos != -1) {
+			uri = uri.substring(0, actionPos);
+		}
+		
+		if(uri.endsWith("UI")) {
+			uri = uri.substring(0, uri.indexOf("UI"));
+		}
+		
+		// 如果本URL不需要控制，则登录用户就可以使用
+		Collection<String> allPrivilegeUrls = (Collection<String>) ActionContext.getContext().getApplication().get("allPrivilegeUrls");
+		if (!allPrivilegeUrls.contains(uri)) 
+			return true;
+		
+		for(Role p : roles) {
+			if(p.hasPrivilege(uri)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public long getId() {
 		return id;

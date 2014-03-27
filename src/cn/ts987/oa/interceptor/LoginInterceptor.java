@@ -23,12 +23,18 @@ public class LoginInterceptor extends AbstractInterceptor{
 		User user = (User) invocation.getInvocationContext().getSession().get("user");
 		
 		if(user != null) {
+			
 			System.err.println("LoginInterceptor.intercept() user不为空，放行");
-			return invocation.invoke();
+			
+			if(user.hasPrivilege(privUrl)) {
+				return invocation.invoke();
+			} else {
+				return "illegalReq";
+			}
 			
 		} else {
 			System.err.println("LoginInterceptor.intercept() user为空，返回到loginUI页面");
-			return "illegalReq";
+			return "loginUI";
 		}
 		
 	}

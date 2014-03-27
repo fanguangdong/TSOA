@@ -2,6 +2,7 @@ package cn.ts987.oa.dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -58,6 +59,18 @@ public class BaseDao<T> implements IBaseDao<T>{
 		return getSession().createQuery(
 				"FROM " + clazz.getSimpleName() +  " WHERE id IN (:ids)") //
 				.setParameterList("ids", ids).list();
+	}
+	
+	@Override
+	public List<T> findByIds(Long[] ids) {
+		if (ids == null || ids.length == 0) {
+			return Collections.EMPTY_LIST;
+		} else {
+			return getSession().createQuery(//
+					"FROM " + clazz.getSimpleName() + " WHERE id IN (:ids)")//
+					.setParameterList("ids", ids)//
+					.list();
+		}
 	}
 
 	@Override

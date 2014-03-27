@@ -14,6 +14,20 @@ public class Role {
 	private Set<Privilege> privileges;
 	
 	
+	public boolean hasPrivilege(String uri) {
+		if(uri == null) 
+			return false;
+		
+		if(uri.charAt(0) != '/') {
+			uri = "/" + uri;
+		}
+		for(Privilege p : this.getPrivileges()) {
+			if(uri.equals(p.getUrl())) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	@Override
 	public String toString() {

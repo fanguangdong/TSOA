@@ -1,5 +1,7 @@
 package cn.ts987.oa.action;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
@@ -18,11 +20,41 @@ public class RoleAction extends BaseAction<Role>{
 	private List<Role> roleList;
 	
 	
-	private List<Privilege> privilegeList;
+	private List<Privilege> topPrivilegeList;
+	
+	private List<Long> privilegeIds;
 	
 	public String setPrivilegeUI() {
-		this.privilegeList = privilegeService.findAll();
-		return "setPrivilegeUI";
+		topPrivilegeList = privilegeService.findTopPrivileges();
+		
+		long roleId = getModel().getId();
+		
+		Role role = roleService.findById(roleId);
+		getModel().setName(role.getName());
+		
+		if(role.getPrivileges() != null) {
+			privilegeIds = new ArrayList<Long>();
+			for(Privilege p : role.getPrivileges()) {
+				privilegeIds.add(p.getId());
+			}
+		}
+		
+		return "setPrivilegeUI"; 
+	}
+	
+	
+	public String setPrivilege() {
+	
+		long roleId = getModel().getId();
+		Role role = roleService.findById(roleId);
+		
+		if(privilegeIds.size() > 0) {
+			List<Privilege> privilegeList = privilegeService.findByIds(privilegeIds);
+			role.setPrivileges(new HashSet<Privilege>(privilegeList));
+		}
+		roleService.update(role);
+		
+		return "toList";
 	}
 	
 	public String list() throws Exception {
@@ -71,12 +103,20 @@ public class RoleAction extends BaseAction<Role>{
 		return "toList";
 	}
 
-	public void setPrivilegeList(List<Privilege> privilegeList) {
-		this.privilegeList = privilegeList;
+	public void setTopPrivilegeList(List<Privilege> topPrivilegeList) {
+		this.topPrivilegeList = topPrivilegeList;
 	}
 
-	public List<Privilege> getPrivilegeList() {
-		return privilegeList;
+	public List<Privilege> getTopPrivilegeList() {
+		return topPrivilegeList;
+	}
+
+	public void setPrivilegeIds(List<Long> privilegeIds) {
+		this.privilegeIds = privilegeIds;
+	}
+
+	public List<Long> getPrivilegeIds() {
+		return privilegeIds;
 	}
 
 	

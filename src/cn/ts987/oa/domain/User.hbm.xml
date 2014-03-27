@@ -21,10 +21,10 @@
 		<property name="email"/>
 		
 		
-		<many-to-one name="department" class="Department" column="departmentId" lazy="false"></many-to-one>
+		<many-to-one name="department" class="Department" column="departmentId"></many-to-one>
 		
 		<!-- roles属性，本类与Role多对多 -->
-		<set name="roles" table="ts_role_user" cascade="delete">
+		<set name="roles" table="ts_role_user" cascade="delete" lazy="false">
 			<key column="userId"></key>
 			<many-to-many class="Role" column="roleId"></many-to-many>
 		</set>

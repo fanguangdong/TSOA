@@ -3,6 +3,9 @@ package cn.ts987.oa.action;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import cn.ts987.oa.domain.User;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Controller("homeAction")
@@ -17,7 +20,9 @@ public class HomeAction extends ActionSupport{
 	}
 	
 	public String top() {
-		
+		User user = (User) ActionContext.getContext().getSession().get("user");
+		if(user != null)
+			ActionContext.getContext().put("userName", user.getName());
 		return "top";
 	}
 	

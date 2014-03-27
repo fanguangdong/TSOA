@@ -13,14 +13,14 @@
 		<property name="name"/>
 		<property name="description"/>
 		
-		<set name="users" table="ts_role_user">
+		<set name="users" table="ts_role_user" lazy="true">
 			<key column="roleId"></key>
 			<many-to-many class="User" column="userId"></many-to-many>
 		</set>
 		
-		<set name="privileges" table="ts_role_privilege">
+		<set name="privileges" table="ts_role_privilege" lazy="false">
 			<key column="roleId"></key>
-			<many-to-many class="Privilege" column="privilegeId"></many-to-many>
+			<many-to-many class="Privilege" column="privilegeId" order-by="id ASC"></many-to-many>
 		</set>
 		
 	</class>

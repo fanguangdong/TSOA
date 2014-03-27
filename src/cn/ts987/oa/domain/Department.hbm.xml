@@ -20,7 +20,7 @@
 		</set>
 
 		
-		<set name="children" lazy="false" inverse="true" cascade="delete" order-by="id ASC">
+		<set name="children" lazy="true" inverse="true" cascade="delete" order-by="id ASC">
 			<key column="parentId"/> 
 			<one-to-many class="Department"/>
 		</set>

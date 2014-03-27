@@ -11,9 +11,10 @@ import cn.ts987.oa.domain.Role;
 import cn.ts987.oa.domain.User;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.Preparable;
 
 @Controller("userAction")
-public class UserAction extends BaseAction<User>{
+public class UserAction extends BaseAction<User> implements Preparable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,12 +30,17 @@ public class UserAction extends BaseAction<User>{
 		return "loginUI";
 	}
 	
+	@Override
+	public void prepare() throws Exception {
+		this.clearErrorsAndMessages();
+	}
+	
 	//用户登陆
 	public String login() {
 		User user = userService.validateUser(model.getLoginName(), model.getPassword());
 		if(user == null) {
-			//addFieldError("login", "用户名和密码不正确！");
-			return "loginFailed";
+			addFieldError("login", "用户名和密码不正确！");
+			return "loginFailed"; 
 		}
 		
 		ActionContext.getContext().getSession().put("user", user);
@@ -180,6 +186,8 @@ public class UserAction extends BaseAction<User>{
 	public Long[] getRoleIds() {
 		return roleIds; 
 	}
+
+	
 
 	
 }
