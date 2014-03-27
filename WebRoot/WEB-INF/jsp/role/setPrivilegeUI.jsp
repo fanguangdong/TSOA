@@ -62,9 +62,11 @@
 
 <!--显示表单内容-->
 <div id=MainArea>
-    <form action="list.html">
+    <s:form action="role_setPrivilege">
+  		<s:hidden name="id"></s:hidden>
+  		
         <div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="style/blue/images/item_point.gif" /> 正在为【部门经理】配置权限 </div> 
+        	<img border="0" width="4" height="7" src="style/blue/images/item_point.gif" /> 正在为【<font color="red"><s:property value="name"/></font>】配置权限 </div> 
         </div>
         
         <!-- 表单内容显示 -->
@@ -87,32 +89,47 @@
 						<tr class="TableDetail1">
 							<!-- 显示权限树 -->
 							<td>
+							
+							
+							
 <ul id='tree'>
 	
-	<s:iterator value="privilegeList">
-	<li>
-		<input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}" <s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
-		<label for="cb_${id}"><span class="folder">${name}</span></label>
-		<ul>
-		<s:iterator value="children">
-			<li>
-				<input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}" <s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
-				<label for="cb_${id}"><span class="folder">${name}</span></label>
-				<ul>
-				<s:iterator value="children">
-					<li>
-						<input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}" <s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
-						<label for="cb_${id}"><span class="folder">${name}</span></label>
-					</li>
-				</s:iterator>
-				</ul>
-			</li>		
-		</s:iterator>
-		</ul>
-	</li>
-</s:iterator>
+	<s:iterator value="topPrivilegeList">
 	
+		<li id='li_${id }'>
+			<input type='checkbox' name='privilegeIds' id='cb_${id }' value="${id }" onclick='doChecked("li_${id }", this.checked)' <s:property value="%{id in privilegeIds ? 'checked' : ''}"/>/>
+			<label for='cb_${id }'><span class='folder' id='${id }'>${name }</span></label>
+			<ul>
+				
+				<s:iterator value="children">
+				
+				<li id='li_${id }'>
+					<input type='checkbox' name='privilegeIds' id='cb_${id }' value="${id }" onclick='doChecked("li_${id }", this.checked)' <s:property value="%{id in privilegeIds ? 'checked' : ''}"/>/>
+					<label for='cb_${id }'><span class='folder' id='${id }'>${name }</span></label>
+					<ul>
+						<s:iterator value="children">
+						<li id='li_${id }'>
+							<input type='checkbox' name='privilegeIds' id='cb_${id }' value="${id }" onclick='doChecked("li_${id }", this.checked)' <s:property value="%{id in privilegeIds ? 'checked' : ''}"/>/>
+							<label for='cb_${id }'><span class='folder' id='${id }'>${name }</span></label>
+						</li>
+						</s:iterator>
+						
+					</ul>
+				</li>
+				
+				</s:iterator> 
+				
+			</ul>
+		</li>
+	
+	
+	</s:iterator>
 </ul>
+
+
+
+
+
 
 </td>
 						</tr>
@@ -126,7 +143,7 @@
             <input type="image" src="style/images/save.png"/>
             <a href="javascript:history.go(-1);"><img src="style/images/goBack.png"/></a>
         </div>
-    </form>
+    </s:form>
 </div>
 
 <div class="Description">

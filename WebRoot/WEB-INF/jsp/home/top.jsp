@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ include file ="../common.jsp"%>
 <html>
 <head>
     <title>Top</title>
@@ -17,7 +18,7 @@
 		
 		<div id="Head1Right">
 			<div id="Head1Right_UserName">
-                <img border="0" width="13" height="14" src="style/images/top/user.gif" /> 您好，<b>管理员</b>
+                <img border="0" width="13" height="14" src="style/images/top/user.gif" /> 您好，<b><s:property value="#userName"/> </b>
 			</div>
 			<div id="Head1Right_UserDept"></div>
 			<div id="Head1Right_UserSetup">
