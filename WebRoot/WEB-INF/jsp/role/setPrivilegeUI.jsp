@@ -12,7 +12,7 @@
 	<script type="text/javascript">
  		// 选择所有
     	function selectAll(checkedValue){
-    		$("input[type=checkbox][name=resourceIdList]").attr("checked", checkedValue);
+    		$("input[type=checkbox][name=privilegeIds]").attr("checked", checkedValue);
     	}
     	
     	function doChecked( liID, checkedValue ){
