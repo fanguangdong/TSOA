@@ -38,10 +38,30 @@
 					<td><s:property value="description" /></td>
 					
 					<td>
-					    <s:a action="role_delete?id=%{id}" onclick="return delConfirm()">删除         </s:a> 
-						<s:a action="role_updateUI?id=%{id}">修改      </s:a> 
 						
-						<s:a href="role_setPrivilegeUI.action?id=%{id}">设置权限    </s:a> 
+						<s:if test="#session.user.hasPrivilege('/role_delete')">
+							<s:a action="role_delete?id=%{id}" onclick="return delConfirm()">删除         </s:a> 
+						</s:if>
+						<s:else>
+							<font color="gray">删除</font>
+						</s:else>
+					    
+					    
+					    <s:if test="#session.user.hasPrivilege('/role_updateUI')">
+							<s:a action="role_updateUI?id=%{id}">修改      </s:a> 
+						</s:if>
+						<s:else>
+							<font color="gray">修改</font>
+						</s:else>
+						
+						
+						<s:if test="#session.user.hasPrivilege('/role_setPrivilegeUI')">
+							<s:a href="role_setPrivilegeUI.action?id=%{id}">设置权限    </s:a> 
+						</s:if>
+						<s:else>
+							<font color="gray">设置权限</font>
+						</s:else>
+						
 					</td>
 				</tr>
 			</s:iterator> 	

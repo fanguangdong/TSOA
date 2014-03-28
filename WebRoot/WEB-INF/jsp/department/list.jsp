@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 
 
 <html>
@@ -41,8 +41,23 @@
 					<td>${parent.name}&nbsp;</td>
 					<td>${description}&nbsp;</td>
 					<td>
-						<a onClick="return window.confirm('这将删除所有的下级部门，您确定要删除吗？')" href="department_delete.action?id=${id}&parentId=${parentId}">删除</a>
-						<a href="department_updateUI.action?id=${id}">修改</a>
+					
+						<s:if test="#session.user.hasPrivilege('/department_delete')">
+							<s:a action="department_delete?id=%{id}&parentId=%{parentId}" onClick="return window.confirm('这将删除所有的下级部门，您确定要删除吗？')">删除</s:a>
+						</s:if>
+						<s:else>
+							<font color="gray">删除</font>
+						</s:else>
+						
+						
+						<s:if test="#session.user.hasPrivilege('/department_update')">
+							<a href="department_updateUI.action?id=${id}" >修改</a> 
+						</s:if>
+						<s:else>
+							<font color="gray">修改</font>
+						</s:else>
+						
+						
 					</td>
 				</tr>
 			

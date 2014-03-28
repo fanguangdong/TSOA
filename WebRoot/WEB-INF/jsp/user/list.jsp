@@ -64,9 +64,25 @@
 	                <td>${department.name}&nbsp;</td>
 	                <td>${roles}</td>
 	                <td>${description}&nbsp;</td>
-	                <td><a onClick="return delConfirm()" href="user_delete.action?id=${id }">删除</a>
-	                    <a href="user_updateUI.action?id=${id }">修改</a>
-						<a href="#" onClick="return window.confirm('您确定要初始化密码为1234吗？')">初始化密码</a>
+	                <td>
+	                	<s:if test="#session.user.hasPrivilege('/user_delete')">
+							<a onClick="return delConfirm()" href="user_delete.action?id=${id }">删除</a>
+						</s:if>
+						<s:else>
+							<font color="gray">删除</font>
+						</s:else>
+						
+						<s:if test="#session.user.hasPrivilege('/user_updateUI')">
+							<a href="user_updateUI.action?id=${id }">修改</a>
+						</s:if>
+						<s:else>
+							<font color="gray">修改</font>
+						</s:else>
+						
+	                    <s:if test="#session.user.isAdmin()">
+	                    	<a href="#" onClick="return window.confirm('您确定要初始化密码为1234吗？')">初始化密码</a>
+	                    </s:if>
+						
 	                </td>
             	</tr>
         	</s:iterator>
