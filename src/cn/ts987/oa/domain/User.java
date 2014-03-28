@@ -20,6 +20,10 @@ public class User {
 	private String email;
 	private Set<Role> roles;
 	
+	
+	public boolean isAdmin() {
+		return "admin".equals(this.loginName);
+	}
 	/**
 	 * 判断此User是否有uri的权限   
 	 * @param uri
@@ -38,7 +42,7 @@ public class User {
 			uri = uri.substring(0, pos);
 		}
 		int actionPos = uri.indexOf(".action");
-		if(pos != -1) {
+		if(actionPos > 0) {
 			uri = uri.substring(0, actionPos);
 		}
 		

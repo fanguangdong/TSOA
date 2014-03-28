@@ -18,7 +18,8 @@ public class Role {
 		if(uri == null) 
 			return false;
 		
-		if(uri.charAt(0) != '/') {
+		
+		if(!uri.startsWith("/")) {
 			uri = "/" + uri;
 		}
 		for(Privilege p : this.getPrivileges()) {

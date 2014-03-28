@@ -19,7 +19,6 @@ public class RoleAction extends BaseAction<Role>{
 	
 	private List<Role> roleList;
 	
-	
 	private List<Privilege> topPrivilegeList;
 	
 	private List<Long> privilegeIds;
