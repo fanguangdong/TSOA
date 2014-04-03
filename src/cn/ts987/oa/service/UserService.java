@@ -1,7 +1,5 @@
 package cn.ts987.oa.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -33,7 +31,7 @@ public class UserService extends BaseService{
 	public void delete(long id) {
 		userDao.delete(id);
 	}
-
+ 
 	@Transactional
 	public User findById(long id) {
 		return userDao.findById(id);
@@ -41,9 +39,9 @@ public class UserService extends BaseService{
 
 	@Transactional
 	public List<User> findByIds(Long[] userIds) {
-		List<Long> users = new ArrayList<Long>();
-		Collections.addAll(users, userIds);
-		return userDao.findByIds(users);
+		//List<Long> users = new ArrayList<Long>();
+		//Collections.addAll(users, userIds);
+		return userDao.findByIds(userIds);
 	}
 
 	public User validateUser(String loginName, String password) {

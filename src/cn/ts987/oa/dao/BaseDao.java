@@ -38,15 +38,13 @@ public class BaseDao<T> implements IBaseDao<T>{
 		getSession().createQuery("DELETE FROM " + clazz.getSimpleName() + " WHERE id = (:id)")
 			.setParameter("id", id)
 			.executeUpdate();
-			
 		//getSession().delete(entity);
 	}
-	
+	  
 	@Override
-	public void update(T entity) {
+	public void update(T entity) { 
 		
 		getSession().update(entity);
-		
 	}
 
 	@Override
@@ -71,12 +69,12 @@ public class BaseDao<T> implements IBaseDao<T>{
 					.setParameterList("ids", ids)//
 					.list();
 		}
-	}
+	}  
 
 	@Override
 	public List<T> findAll() {
 		return getSession().createQuery("FROM " + clazz.getSimpleName()).list();
 	}
-
+	
 	
 }
