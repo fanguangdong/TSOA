@@ -60,7 +60,26 @@
 			<result name="toIndex" type="redirectAction">home_index</result>
 			<result name="logout">/WEB-INF/jsp/user/logout.jsp</result>
 			<result name="input">/WEB-INF/jsp/user/loginUI.jsp</result>
+		</action>
+		
+		
+		<action name="processDefinition_*" class="processDefinitionAction" method="{1}">
+			<result name="toList" type="redirectAction">processDefinition_list</result>
+			<result name="list">/WEB-INF/jsp/workflow/processDefinition/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/workflow/processDefinition/addUI.jsp</result>
 			
+			<!-- 下载图片用的 -->
+			<result name="showProcessImage" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentType">image/png</param>
+			</result>
+		</action>
+		
+		<!-- 表单模板action配置  -->
+		<action name="formTemplate_*" class="formTemplateAction" method="{1}">
+			<result name="toList" type="redirectAction">formTemplate_list</result>
+			<result name="list">/WEB-INF/jsp/workflow/formTemplate/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/workflow/formTemplate/saveUI.jsp</result>
 		</action>
     </package>
 

@@ -55,4 +55,11 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="txManager"/>
 	
+	<!-- 配置ProcessEngine（整合JBPM4.4）--> 
+	<bean id="springHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper">
+		<!-- 指定配置文件的路径 -->
+		<property name="jbpmCfg" value="jbpm.cfg.xml"></property>
+	</bean>
+	<bean id="processEngine" factory-bean="springHelper" factory-method="createProcessEngine" />
+	
 </beans>

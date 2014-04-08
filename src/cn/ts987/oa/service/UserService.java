@@ -12,6 +12,11 @@ import cn.ts987.oa.domain.User;
 public class UserService extends BaseService{
 	
 	@Transactional
+	public void jbpmTest() {
+		System.err.println("processEngine is: " + processEngine);
+	}
+	
+	@Transactional
 	public List<User> list() {
 		List<User> UserList = userDao.findAll();
 		return UserList;

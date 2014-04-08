@@ -2,6 +2,8 @@ package cn.ts987.oa.service;
 
 import javax.annotation.Resource;
 
+import org.jbpm.api.ProcessEngine;
+
 import cn.ts987.oa.dao.IBaseDao;
 import cn.ts987.oa.domain.Department;
 import cn.ts987.oa.domain.Privilege;
@@ -21,4 +23,7 @@ public abstract class BaseService {
 	
 	@Resource(name="privilegeDao")
 	protected IBaseDao<Privilege> privilegeDao;
+	
+	@Resource(name="processEngine")
+	protected ProcessEngine processEngine;
 }

@@ -10,7 +10,7 @@ public class LoginInterceptor extends AbstractInterceptor{
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		System.err.println("LoginInterceptor.intercept()");
+		//System.err.println("LoginInterceptor.intercept()");
 		
 		String namespace = invocation.getProxy().getNamespace();
 		String actionName = invocation.getProxy().getActionName();
@@ -24,7 +24,7 @@ public class LoginInterceptor extends AbstractInterceptor{
 		
 		if(user != null) {
 			
-			System.err.println("LoginInterceptor.intercept() user不为空，放行");
+			//System.err.println("LoginInterceptor.intercept() user不为空，放行");
 			
 			if(user.hasPrivilege(privUrl)) {
 				return invocation.invoke();
@@ -33,7 +33,7 @@ public class LoginInterceptor extends AbstractInterceptor{
 			}
 			
 		} else {
-			System.err.println("LoginInterceptor.intercept() user为空，返回到loginUI页面");
+			//System.err.println("LoginInterceptor.intercept() user为空，返回到loginUI页面");
 			return "loginUI";
 		}
 		
