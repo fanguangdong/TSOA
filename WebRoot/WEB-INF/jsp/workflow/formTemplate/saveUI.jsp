@@ -19,7 +19,7 @@
 
 <!--显示表单内容-->
 <div id=MainArea>
-    <s:form action="formTemplate_%{id == null ? 'add' : 'edit'}" enctype="multipart/form-data">
+    <s:form action="formTemplate_%{id == null ? 'add' : 'update'}" enctype="multipart/form-data">
     	<s:hidden name="id"></s:hidden>
     
         <div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">

@@ -36,7 +36,7 @@
 				<td>${name}&nbsp;</td>
 				<td>${pdKey}&nbsp;</td>
 				<td><s:a action="formTemplate_delete?id=%{id}" onclick="return delConfirm()">删除</s:a>
-					<s:a action="formTemplate_editUI?id=%{id}">修改</s:a>
+					<s:a action="formTemplate_updateUI?id=%{id}">修改</s:a>
 					<s:a action="formTemplate_download?id=%{id}">下载</s:a>
 				</td>
 			</tr>

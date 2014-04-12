@@ -42,14 +42,14 @@
                 </li>
                 <li class="level2">
                     <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif" /> <a target="right"
-			href="Flow_Formflow/formTemplateList.html">起草申请</a></div>
+			href="form_formTemplateList.action">起草申请</a></div>
                 </li>
                 <li class="level2">
                     <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif" /> <a target="right" href="Flow_Formflow/myTaskList.html"> 待我审批</a></div>
                 </li>
                 <li class="level2">
                     <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif" /> <a target="right"
-			href="Flow_FormFlow_Old/mySubmittedList.html">我的申请查询</a></div>
+			href="form_myApplicationList.action">我的申请查询</a></div>
                 </li>
                 <!--
 		<li class="level2">
