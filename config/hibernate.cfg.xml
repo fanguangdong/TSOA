@@ -34,6 +34,8 @@
 	
 	<!-- 工作流程相关实体 -->
 	<mapping resource="cn/ts987/oa/domain/FormTemplate.hbm.xml" />
+	<mapping resource="cn/ts987/oa/domain/Form.hbm.xml" />
+	<mapping resource="cn/ts987/oa/domain/ApproveInfo.hbm.xml" /> 
 
 	<!-- jbpm 映射文件 -->
      <mapping resource="jbpm.repository.hbm.xml" />

@@ -79,7 +79,19 @@
 		<action name="formTemplate_*" class="formTemplateAction" method="{1}">
 			<result name="toList" type="redirectAction">formTemplate_list</result>
 			<result name="list">/WEB-INF/jsp/workflow/formTemplate/list.jsp</result>
-			<result name="addUI">/WEB-INF/jsp/workflow/formTemplate/saveUI.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/workflow/formTemplate/saveUI.jsp</result>
+			
+			<result name="download" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentType">application/octet-stream</param>
+				<param name="contentDisposition">attachment;filename="${#fileName}.doc"</param>
+			</result>
+		</action>
+		
+		<action name="form_*" class="formAction" method="{1}">
+			<result name="formTemplateList">/WEB-INF/jsp/workflow/formTemplate/formTemplateList.jsp</result>
+			<result name="submitUI">/WEB-INF/jsp/workflow/form/submitUI.jsp</result>
+			<result name="myApplicationList">/WEB-INF/jsp/workflow/form/myApplicationList.jsp</result>
 		</action>
     </package>
 
