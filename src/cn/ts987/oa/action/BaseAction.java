@@ -11,13 +11,16 @@ import javax.annotation.Resource;
 
 import org.apache.struts2.ServletActionContext;
 
+import cn.ts987.oa.domain.User;
 import cn.ts987.oa.service.DepartmentService;
+import cn.ts987.oa.service.FormFlowService;
 import cn.ts987.oa.service.FormTemplateService;
 import cn.ts987.oa.service.PrivilegeService;
 import cn.ts987.oa.service.ProcessDefinitionService;
 import cn.ts987.oa.service.RoleService;
 import cn.ts987.oa.service.UserService;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -69,7 +72,29 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 	@Resource
 	protected FormTemplateService formTemplateService;
 	
+	@Resource
+	protected FormFlowService formFlowService;
 	
+	private static String servletPath = null;
+	
+	/**
+	 * 获得当前用户
+	 * @return
+	 */
+	protected User getCurrentUser() {
+		return (User) ActionContext.getContext().getSession().get("user");
+	}
+	
+	/**
+	 * 获取项目路径
+	 * @return
+	 */
+	protected String getServletContextPath() {
+		if(servletPath == null)
+			servletPath = ServletActionContext.getServletContext().getRealPath("");
+		
+		return servletPath;
+	}
 	
 	/**
 	 * 保存上传的文件，使用UUID做为文件名，并返回文件存储的全路径
@@ -92,8 +117,9 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 		// 移动到目的地，return true if and only if the renaming succeeded; false otherwise
 		// 如果目标文件存在就会失败返回false.
 		// 如果目标文件所在的文件夹不存在，就会失败返回false.
-		upload.renameTo(destFile);
-
-		return path;
+		upload.renameTo(destFile); 
+		
+		String relativeFilePath = path.substring(path.indexOf("WEB-INF"), path.length());
+		return relativeFilePath;
 	}
 }

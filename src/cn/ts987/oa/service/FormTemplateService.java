@@ -26,5 +26,13 @@ public class FormTemplateService {
 		formTemplateDao.save(model);
 		
 	}
+
+	public void delete(Long id) {
+		formTemplateDao.delete(id);
+	}
+
+	public FormTemplate getById(Long id) {
+		return formTemplateDao.findById(id);
+	}
 	
 }
