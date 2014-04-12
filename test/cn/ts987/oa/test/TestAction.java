@@ -9,7 +9,8 @@ import com.opensymphony.xwork2.ActionSupport;
 @Scope("prototype")
 public class TestAction extends ActionSupport{
 	
-	
+	private static final long serialVersionUID = 1L;
+
 	public String execute() throws Exception{
 		System.out.println("----->TestAction.execute()");
 		return "success";

@@ -50,6 +50,7 @@ public class FormFlowService extends BaseService{
 		String processDefinitionKey = form.getFormTemplate().getPdKey();
 		Map<String, Form> variables = new HashMap<String, Form>();
 		variables.put("form", form);
+		@SuppressWarnings("unused")
 		ProcessInstance pi = processEngine.getExecutionService().startProcessInstanceByKey(processDefinitionKey, variables);
 		
 		//b   完成第一个任务“提交申请”

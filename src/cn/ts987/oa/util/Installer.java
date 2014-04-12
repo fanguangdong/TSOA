@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ts987.oa.domain.Privilege;
-import cn.ts987.oa.domain.User;
 
 @Component
 public class Installer {

@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URLDecoder;
 import java.util.Collection;
-import java.util.List;
 import java.util.zip.ZipInputStream;
 
 import org.jbpm.api.ProcessDefinition;

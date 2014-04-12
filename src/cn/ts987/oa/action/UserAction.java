@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import cn.ts987.oa.domain.Department;
 import cn.ts987.oa.domain.Role;
 import cn.ts987.oa.domain.User;
-import cn.ts987.oa.service.UserService;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.Preparable;

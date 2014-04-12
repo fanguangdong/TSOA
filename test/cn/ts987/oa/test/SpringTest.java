@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.ts987.oa.action.DepartmentAction;
-
 public class SpringTest { 
 	
 	private ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -45,7 +43,7 @@ public class SpringTest {
 	
 	@Test
 	public void testAction() throws Exception {
-		DepartmentAction da = (DepartmentAction) ac.getBean("departmentAction");
+		//DepartmentAction da = (DepartmentAction) ac.getBean("departmentAction");
 	}
 	
 	
