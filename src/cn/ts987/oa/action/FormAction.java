@@ -3,11 +3,14 @@ package cn.ts987.oa.action;
 import java.io.File;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
+import org.jbpm.api.task.Task;
 import org.springframework.stereotype.Controller;
 
 import cn.ts987.oa.domain.Form;
 import cn.ts987.oa.domain.FormTemplate;
+import cn.ts987.oa.domain.TaskView;
 import cn.ts987.oa.domain.User;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -30,6 +33,10 @@ public class FormAction extends BaseAction<Form> {
 		return "submitUI";
 	}
 	
+	/**
+	 * 提交申请
+	 * @return
+	 */
 	public String submit() {
 		FormTemplate ft = formTemplateService.getById(formTemplateId);
 		
@@ -48,6 +55,10 @@ public class FormAction extends BaseAction<Form> {
 		return "formTemplateList";
 	}
 	
+	/**
+	 * 我的申请列表
+	 * @return
+	 */
 	public String myApplicationList() {
 		Collection<FormTemplate> formTemplateList = formTemplateService.list();
 		ActionContext.getContext().put("formTemplateList", formTemplateList);
@@ -60,8 +71,15 @@ public class FormAction extends BaseAction<Form> {
 	}
 	
 	
-	
-	
+	/**
+	 * 当前用户的待办任务列表
+	 * @param formTemplateId
+	 */
+	public String myTaskList() {
+		List<TaskView> taskViewList = formFlowService.getMyTaskList(getCurrentUser());
+		ActionContext.getContext().put("taskViewList", taskViewList);
+		return "myTaskList";
+	}
 	
 	
 	

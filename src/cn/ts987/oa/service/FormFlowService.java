@@ -1,6 +1,7 @@
 package cn.ts987.oa.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ts987.oa.dao.FormFlowDao;
 import cn.ts987.oa.domain.Form;
+import cn.ts987.oa.domain.TaskView;
 import cn.ts987.oa.domain.User;
 
 @Service("formFlowService")
@@ -58,6 +60,8 @@ public class FormFlowService extends BaseService{
 		List<Task> list = processEngine.getTaskService().findPersonalTasks(user.getLoginName());
 		String taskId = list.get(0).getId();
 		
+		//String assignee = list.get(0).getAssignee();
+		
 		/*String taskId = processEngine.getTaskService()//
 			.createTaskQuery()//询出本流程实例中当前仅有一个任务（提交申请的任务）
 			.processInstanceId(pi.getId())//
@@ -66,6 +70,24 @@ public class FormFlowService extends BaseService{
 		
 		processEngine.getTaskService().completeTask(taskId);   // 完成任务
 		
+	}
+	
+	/**
+	 * 获取用户的任务列表
+	 * @param currentUser
+	 * @return
+	 */
+	public List<TaskView> getMyTaskList(User currentUser) {
+		// 1，获取任务列表
+		List<Task> taskList = processEngine.getTaskService().findPersonalTasks(currentUser.getLoginName());
+
+		// 2，获取与当前审批任务对应的待审批的表单，并放到要返回的结果集合中
+		List<TaskView> taskViewList = new ArrayList<TaskView>();
+		for (Task task : taskList) {
+			Form form = (Form) processEngine.getTaskService().getVariable(task.getId(), "form");
+			taskViewList.add(new TaskView(task, form));
+		}
+		return taskViewList;
 	}
 	
 }
