@@ -92,6 +92,7 @@
 			<result name="formTemplateList">/WEB-INF/jsp/workflow/formTemplate/formTemplateList.jsp</result>
 			<result name="submitUI">/WEB-INF/jsp/workflow/form/submitUI.jsp</result>
 			<result name="myApplicationList">/WEB-INF/jsp/workflow/form/myApplicationList.jsp</result>
+			<result name="myTaskList">/WEB-INF/jsp/workflow/form/myTaskList.jsp</result>
 		</action>
     </package>
 
