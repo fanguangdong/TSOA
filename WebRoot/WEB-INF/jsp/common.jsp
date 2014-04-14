@@ -1,3 +1,4 @@
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -12,3 +13,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script language="javascript" src="script/pageCommon.js" charset="utf-8"></script>
 <script language="javascript" src="script/PageUtils.js" charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="style/blue/pageCommon.css" />
+

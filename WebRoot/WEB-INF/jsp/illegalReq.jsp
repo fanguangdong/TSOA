@@ -23,6 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-     对不起，您没有权限进行此次操作。
+       <h2><font color="red">对不起，您没有权限进行此次操作。</font></h2>
   </body>
 </html>

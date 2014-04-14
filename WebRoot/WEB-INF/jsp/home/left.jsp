@@ -45,7 +45,7 @@
 			href="form_formTemplateList.action">起草申请</a></div>
                 </li>
                 <li class="level2">
-                    <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif" /> <a target="right" href="Flow_Formflow/myTaskList.html"> 待我审批</a></div>
+                    <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif" /> <a target="right" href="form_myTaskList.action"> 待我审批</a></div>
                 </li>
                 <li class="level2">
                     <div class="level2Style"><img src="style/images/MenuIcon/menu_arrow_single.gif" /> <a target="right"

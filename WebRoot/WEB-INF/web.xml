@@ -49,9 +49,26 @@
 
 
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-	
+	 
+	<!-- Error Page定义 -->
+	<error-page>
+    	<exception-type>java.lang.Exception</exception-type>
+    	<location>/commons/error.jsp</location>
+	</error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/commons/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/commons/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/commons/403.jsp</location>
+    </error-page>
 
 </web-app>
 
