@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.impl.RepositoryServiceImpl;
+import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.persistence.entity.TaskEntity;
 import org.activiti.engine.impl.pvm.PvmTransition;
@@ -110,20 +111,24 @@ public class FormFlowService extends BaseService{
 			.taskId(taskId) //
 			.singleResult(); 
 		
-		processEngine.getTaskService().complete(taskId);
+		TaskEntity taskEntity = (TaskEntity) processEngine.getTaskService().createTaskQuery().taskId(taskId).singleResult();
+        
+		System.out.println("==================================================================");
+        System.out.println("taskEntity: " + taskEntity.getProcessDefinitionId()); 
+		
+        
 		
 		// 获取当前正执行的流程实例对象（如果查到的为null，表示已经执行完了）
 		ProcessInstance pi = processEngine.getRuntimeService()//
 			.createProcessInstanceQuery()//
-			.processInstanceId(task.getExecutionId()).singleResult();  //;
+			.processInstanceId(task.getExecutionId())//
+			.singleResult();  //;
 		
 		// 维护表单状态
 		Form form = approveInfo.getForm();
 		if (!approveInfo.isApproval()) {  // 如果本次未同意，流程直接结束，表单状态为：未通过
 			if (pi != null) {
-				ActivityImpl endActivity = findActivitiImpl(taskId, "endevent1"); 
-		        
-				commitProcess(taskId, null, endActivity.getId());  
+				rejectAndtoEnd(taskId);  //没有通过，直接跳转到结束节点
 			}
 			form.setStatus(Form.STATUS_REJECTED);
 		} else {
@@ -131,7 +136,12 @@ public class FormFlowService extends BaseService{
 			if (pi == null) { // 如果本流程实例已执行完，表示本次是最后一个审批
 				form.setStatus(Form.STATUS_APPROVED);
 			}
+			processEngine.getTaskService().complete(taskId);
+			
 		}
+		
+		
+		
 		//保存表单维护状态
 		formFlowDao.save(form);
 		
@@ -219,6 +229,7 @@ public class FormFlowService extends BaseService{
      *            此参数为空，默认为提交操作 
      * @throws Exception 
      */  
+	@SuppressWarnings("unused")
 	private void commitProcess(String taskId, Map<String, Object> variables,  
             String activityId) throws Exception {  
         if (variables == null) {  
@@ -308,6 +319,57 @@ public class FormFlowService extends BaseService{
             pvmTransitionList.add(pvmTransition);  
         }  
     }  
+    
+    
+    /**
+     *  否决并跳转到结束节点
+     * @param activityImpl taskId 
+     */
+    private void rejectAndtoEnd(String taskId) {    
+        TaskEntity taskEntity = (TaskEntity) processEngine.getTaskService().createTaskQuery().taskId(taskId).singleResult();
+        
+        System.out.println("taskEntity: " + taskEntity.getProcessDefinitionId()); 
+        
+        ProcessDefinitionEntity def = (ProcessDefinitionEntity) ((RepositoryServiceImpl) processEngine.getRepositoryService()).getDeployedProcessDefinition(taskEntity.getProcessDefinitionId());
+        
+         
+        ExecutionEntity executionEntity = (ExecutionEntity) processEngine.getRuntimeService().createExecutionQuery().executionId(taskEntity.getExecutionId()).singleResult();//执行实例
+        String activitiId = executionEntity.getActivityId();//当前实例的执行到哪个节点
+        List<ActivityImpl> activitiList = def.getActivities();//获得当前任务的所有节点
+        
+        ActivityImpl activeActivity = findActivityImpl(activitiList, activitiId);
+        ActivityImpl endActivity = findEndActivityImpls(activitiList).get(0);
+
+        List<PvmTransition> pvmTransitionList = activeActivity.getOutgoingTransitions();//获取当前节点的所以出口（这个方法做的不好，应该返回List<TransitionImpl>才对的，这样就不用下面的强转换了，我想以后版本会改了这点）
+        for (PvmTransition pvmTransition : pvmTransitionList) {
+            TransitionImpl transitionImpl = (TransitionImpl) pvmTransition;//强转为TransitionImpl
+            transitionImpl.setDestination(endActivity);
+        }
+        
+        processEngine.getTaskService().complete(taskId);  
+    }
+    
+    //根据ActivitiId获取Acitiviti
+    private ActivityImpl findActivityImpl(List<ActivityImpl> activitiList, String activitiId) {
+        for (ActivityImpl activityImpl : activitiList) {
+            String id = activityImpl.getId();
+            if (id.equals(activitiId)) {
+                return activityImpl;
+            }
+        }
+        return null;
+    }
+    
+    private List<ActivityImpl> findEndActivityImpls(List<ActivityImpl> activitiList) {
+        List<ActivityImpl> activityImpls = new ArrayList<ActivityImpl>();
+        for (ActivityImpl activityImpl : activitiList) {
+            List<PvmTransition> pvmTransitionList = activityImpl.getOutgoingTransitions();
+            if (pvmTransitionList.isEmpty()) {
+                activityImpls.add(activityImpl);
+            }
+        }
+        return activityImpls;
+    }
     
 }    
 
