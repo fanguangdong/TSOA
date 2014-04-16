@@ -90,7 +90,7 @@ public class FormFlowService extends BaseService{
 		List<TaskView> taskViewList = new ArrayList<TaskView>();
 		for (Task task : taskList) {
 			Form form = (Form) processEngine.getTaskService().getVariable(task.getId(), "form");
-				taskViewList.add(new TaskView(task, form)); 
+			taskViewList.add(new TaskView(task, form)); 
 			
 		}
 		return taskViewList;
@@ -118,6 +118,14 @@ public class FormFlowService extends BaseService{
 		
 		// 维护表单状态
 		Form form = approveInfo.getForm();
+		if(form == null) {  //TODO 异常情况 
+			throw new Exception("获取Form失败");
+			//System.err.println("form 为空  FormFlowService.java L122");
+			//deleteProcessInstance(task.getId()); 
+			//return;
+			//throw new Exception("获取Form失败");
+		}
+		
 		if (!approveInfo.isApproval()) {  // 如果本次未同意，流程直接结束，表单状态为：未通过
 			if (pi != null) {
 				rejectAndtoEnd(taskId);  //没有通过，直接跳转到结束节点
@@ -126,14 +134,21 @@ public class FormFlowService extends BaseService{
 			
 		} else {
 			// 如果本次同意，且本次是最后一个审批，就表示所有的环节都通过了，则流程正常结束，表单的状态为：已通过
-			if (pi == null) { // 如果本流程实例已执行完，表示本次是最后一个审批
-				form.setStatus(Form.STATUS_APPROVED);
-			}
 			processEngine.getTaskService().complete(taskId);
+			pi = processEngine.getRuntimeService()//
+				.createProcessInstanceQuery()//
+				.processInstanceId(task.getExecutionId())//
+				.singleResult();  //;
+			
+			if (pi == null) { // 如果本流程实例已执行完，表示本次是最后一个审批
+				form.setStatus(Form.STATUS_APPROVED); 
+			}
+			
 		}
-		
+		System.out.println("========||||||||||||||||||form.approvel is: " + form.getStatus());
 		//保存表单维护状态
-		formFlowDao.save(form);
+		if(form != null)
+			formFlowDao.save(form); 
 		
 	}
 	
@@ -363,10 +378,30 @@ public class FormFlowService extends BaseService{
         }
         return activityImpls;
     }
+
+    /**
+     * 删除Form
+     * @param formId
+     */
+	public void delete(Long formId) {
+		formFlowDao.delete(formId);
+		
+	}
+
+	public void deleteProcessInstance(String taskId) {
+		if(taskId == null)
+			return;
+		
+		TaskEntity taskEntity = (TaskEntity) processEngine.getTaskService().createTaskQuery().taskId(taskId).singleResult();
+	    //System.out.println("======== taskEntity: " + taskEntity.getProcessDefinitionId()); 
+	    if(taskEntity != null)   
+	        processEngine.getRuntimeService().deleteProcessInstance(taskEntity.getProcessInstanceId(), null); //删除流程
+		
+	}
     
 }    
 
-
+ 
 
 
 

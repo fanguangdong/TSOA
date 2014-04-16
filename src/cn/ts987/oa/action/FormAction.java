@@ -85,6 +85,21 @@ public class FormAction extends BaseAction<Form> {
 		return "myApplicationList";
 	}
 	
+	/**
+	 * 删除Form
+	 * @return
+	 */
+	public String delete() {
+		formFlowService.delete(formId);
+		formFlowService.deleteProcessInstance(taskId);
+		
+		Collection<FormTemplate> formTemplateList = formTemplateService.list();
+		ActionContext.getContext().put("formTemplateList", formTemplateList);
+		User user = getCurrentUser();
+		Collection<Form> recordList = formFlowService.findByUser(user); 
+		ActionContext.getContext().put("recordList", recordList);
+		return "myApplicationList";
+	}
 	
 	/**
 	 * 当前用户的待办任务列表
@@ -131,11 +146,14 @@ public class FormAction extends BaseAction<Form> {
 	 * @throws Exception 
 	 */
 	public String approve() throws Exception {
+		if(taskId == null) 
+			throw new Exception("taskId 为空");
+		
 		Form form = formFlowService.getById(formId);
 		
 		// 生成一个ApproveInfo对象，表示本次的审批信息
 		ApproveInfo ai = new ApproveInfo();
-		ai.setApproval(approval);
+		ai.setApproval(approval); 
 		ai.setApprover(getCurrentUser());
 		ai.setApproveTime(new Date());
 		ai.setComment(comments);

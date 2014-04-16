@@ -66,9 +66,14 @@
 				<td>${title}</td>
 				<td>${applicant.name}&nbsp;</td>
 				<td>${applyTime}&nbsp;</td>
-				<td>${status}&nbsp;</td>
+				<td>
+					<s:if test="status=='未通过'"><font color='red'>未通过</font></s:if>
+					<s:if test="status=='已通过'"><font color='green'>已通过</font></s:if>
+					<s:if test="status=='审批中'"><font color='blue'>审批中</font></s:if>
+				</td>   
 				<td>
 					<s:a action="form_approvedHistory?formId=%{id}">查看流转记录</s:a>
+					<s:a action="form_delete?formId=%{id}" onClick="return window.confirm('确定要删除此条流转记录?')">&nbsp;删除</s:a>
 				</td>
 			</tr>
 		</s:iterator>	
