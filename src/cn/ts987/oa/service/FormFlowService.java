@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.impl.RepositoryServiceImpl;
 import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
@@ -110,14 +109,7 @@ public class FormFlowService extends BaseService{
 			.createTaskQuery()                           //
 			.taskId(taskId) //
 			.singleResult(); 
-		
-		TaskEntity taskEntity = (TaskEntity) processEngine.getTaskService().createTaskQuery().taskId(taskId).singleResult();
         
-		System.out.println("==================================================================");
-        System.out.println("taskEntity: " + taskEntity.getProcessDefinitionId()); 
-		
-        
-		
 		// 获取当前正执行的流程实例对象（如果查到的为null，表示已经执行完了）
 		ProcessInstance pi = processEngine.getRuntimeService()//
 			.createProcessInstanceQuery()//
@@ -131,22 +123,23 @@ public class FormFlowService extends BaseService{
 				rejectAndtoEnd(taskId);  //没有通过，直接跳转到结束节点
 			}
 			form.setStatus(Form.STATUS_REJECTED);
+			
 		} else {
 			// 如果本次同意，且本次是最后一个审批，就表示所有的环节都通过了，则流程正常结束，表单的状态为：已通过
 			if (pi == null) { // 如果本流程实例已执行完，表示本次是最后一个审批
 				form.setStatus(Form.STATUS_APPROVED);
 			}
 			processEngine.getTaskService().complete(taskId);
-			
 		}
-		
-		
 		
 		//保存表单维护状态
 		formFlowDao.save(form);
 		
 	}
 	
+	
+	
+	//===============================Activiti5 封装API===============================================
 	/**
 	 * 获取Task 根据taskId
 	 * @param taskId
