@@ -11,9 +11,9 @@
 			<generator class="native"/>
 		</id>
 		
-		<many-to-one name="form" class="Form"></many-to-one>
+		<many-to-one name="form" class="Form" column="formId"></many-to-one>
 		
-		<many-to-one name="approver" class="User"></many-to-one>
+		<many-to-one name="approver" class="User" column="approverId"></many-to-one>
 		
 		<property name="approveTime" type="java.util.Date"/>
 		<property name="approval" type="java.lang.Boolean"/>

@@ -24,12 +24,8 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/depends/servlet-api.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate3.2/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate3.2/hibernate3.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jbpm4.4/activation.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jbpm4.4/jbpm.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jbpm4.4/mail.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log/commons-collections.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log/commons-logging.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log/dom4j.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log/log4j.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log/slf4j-api-1.7.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log/slf4j-log4j12-1.7.6.jar"/>
@@ -47,5 +43,19 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2.1.8/struts2-core-2.1.8.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2.1.8/struts2-spring-plugin-2.3.1.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2.1.8/xwork-core-2.1.6.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/depends/dom4j.jar"/>
+	<classpathentry kind="lib" path="D:/Tomcat/apache-tomcat-7.0.52/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti5.15/activiti-bpmn-converter-5.15.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti5.15/activiti-bpmn-model-5.15.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti5.15/activiti-common-rest-5.15.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti5.15/activiti-engine-5.15.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti5.15/activiti-explorer-5.15.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti5.15/activiti-json-converter-5.15.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti5.15/activiti-modeler-5.15.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti5.15/activiti-spring-5.15.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mybatis3.2.5/mybatis-3.2.5.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti5.15/activiti-process-validation-5.15.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activiti5.15/joda-time-2.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log/commons-lang3-3.1.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

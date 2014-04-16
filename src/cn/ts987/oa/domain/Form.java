@@ -1,19 +1,22 @@
 package cn.ts987.oa.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Form {
+public class Form implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	/** 表单状态常量：审批中 */
 	public static final String STATUS_RUNNING = "审批中";
 
 	/** 表单状态常量：已通过 */
 	public static final String STATUS_APPROVED = "已通过";
-
+ 
 	/** 表单状态常量：未通过 */
-	public static final String STATUS_REJECTED = "未通过";
+	public static final String STATUS_REJECTED = "未通过"; 
 	
 	private Long id;
 	private FormTemplate formTemplate;// 所使用的文档模板

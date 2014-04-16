@@ -2,17 +2,20 @@ package cn.ts987.oa.service;
 
 import javax.annotation.Resource;
 
-import org.jbpm.api.ProcessEngine;
-
-import com.opensymphony.xwork2.ActionContext;
+import org.activiti.engine.ProcessEngine;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.ts987.oa.dao.IBaseDao;
+import cn.ts987.oa.domain.ApproveInfo;
 import cn.ts987.oa.domain.Department;
 import cn.ts987.oa.domain.Form;
 import cn.ts987.oa.domain.Privilege;
 import cn.ts987.oa.domain.Role;
 import cn.ts987.oa.domain.User;
 
+import com.opensymphony.xwork2.ActionContext;
+
+@Transactional
 public abstract class BaseService {
 	
 	protected User getCurrentUser() {
@@ -36,4 +39,7 @@ public abstract class BaseService {
 	
 	@Resource(name="formFlowDao")
 	protected IBaseDao<Form> formFlowDao;
+	
+	@Resource(name="approveInfoDao")
+	protected IBaseDao<ApproveInfo> approveInfoDao;
 }

@@ -68,7 +68,7 @@
 				<td>${applyTime}&nbsp;</td>
 				<td>${status}&nbsp;</td>
 				<td>
-					<s:a action="formFlowAction_approvedHistory?formId=%{id}">查看流转记录</s:a>
+					<s:a action="form_approvedHistory?formId=%{id}">查看流转记录</s:a>
 				</td>
 			</tr>
 		</s:iterator>	

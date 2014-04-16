@@ -7,7 +7,7 @@ import java.net.URLDecoder;
 import java.util.Collection;
 import java.util.zip.ZipInputStream;
 
-import org.jbpm.api.ProcessDefinition;
+import org.activiti.engine.repository.ProcessDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 

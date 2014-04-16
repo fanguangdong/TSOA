@@ -1,15 +1,18 @@
 package cn.ts987.oa.domain;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
 import com.opensymphony.xwork2.ActionContext;
 
-public class User {
+public class User implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private long id;
 	private String name;
-	private String description;
+	private String description; 
 	private String loginName;
 	private Date hiredate;
 	private String idCard;

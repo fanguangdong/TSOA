@@ -60,11 +60,11 @@
 
 		<s:iterator value="#taskViewList">
 			<tr class="TableDetail1 template">
-				<td>&nbsp;</td>
+				<td>${form.title }&nbsp;</td>
 				<td>${form.applicant.name}&nbsp;</td>
 				<td>${form.applyTime}&nbsp;</td>
-				<td><s:a action="formFlowAction_approveUI?formId=%{form.id}&taskId=%{task.id}">审批处理</s:a>
-					<s:a action="formFlowAction_approvedHistory?formId=%{form.id}">查看流转记录</s:a>
+				<td><s:a action="form_approveUI?formId=%{form.id}&taskId=%{task.id}">审批处理</s:a>
+					<s:a action="form_approvedHistory?formId=%{form.id}">查看流转记录</s:a>
 				</td>
 			</tr>
 		</s:iterator>	

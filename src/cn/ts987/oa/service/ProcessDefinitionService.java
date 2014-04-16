@@ -9,9 +9,10 @@ import java.util.zip.ZipInputStream;
 
 import javax.annotation.Resource;
 
-import org.jbpm.api.ProcessDefinition;
-import org.jbpm.api.ProcessDefinitionQuery;
-import org.jbpm.api.ProcessEngine;
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.impl.ProcessDefinitionQueryProperty;
+import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,8 +32,9 @@ public class ProcessDefinitionService {
 		//查询出所有的流程定义，按版本从小到大排序
 		List<ProcessDefinition> allPdList = processEngine.getRepositoryService()//
 			.createProcessDefinitionQuery()//
-			.orderAsc(ProcessDefinitionQuery.PROPERTY_VERSION)
-			.list();
+			.orderByProcessDefinitionVersion()//
+			.asc()//
+			.list(); 
 		
 		//过滤出所有最新版本
 		Map<String, ProcessDefinition> pdMap = new HashMap<String, ProcessDefinition>();
@@ -50,7 +52,7 @@ public class ProcessDefinitionService {
 	public void deployZip(ZipInputStream zipInputStream) {
 		processEngine.getRepositoryService()//
 			.createDeployment()//
-			.addResourcesFromZipInputStream(zipInputStream)//
+			.addZipInputStream(zipInputStream)//
 			.deploy();
 	}
 
@@ -67,11 +69,11 @@ public class ProcessDefinitionService {
 		ProcessDefinition pd = processEngine.getRepositoryService()//
 			.createProcessDefinitionQuery()//
 			.processDefinitionId(pdId)//
-			.uniqueResult();
+			.singleResult();
 		
 		
 		return processEngine.getRepositoryService()//
-			.getResourceAsStream(pd.getDeploymentId(), pd.getImageResourceName());
+			.getResourceAsStream(pd.getDeploymentId(), pd.getDiagramResourceName());
 	
 	}
 

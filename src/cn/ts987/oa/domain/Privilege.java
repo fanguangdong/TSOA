@@ -1,9 +1,11 @@
 package cn.ts987.oa.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class Privilege {
-	
+public class Privilege implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	private long id;
 	
 	private String name;

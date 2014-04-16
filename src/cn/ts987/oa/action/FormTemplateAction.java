@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.Collection;
 
-import org.jbpm.api.ProcessDefinition;
+import org.activiti.engine.repository.ProcessDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 

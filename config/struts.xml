@@ -93,6 +93,15 @@
 			<result name="submitUI">/WEB-INF/jsp/workflow/form/submitUI.jsp</result>
 			<result name="myApplicationList">/WEB-INF/jsp/workflow/form/myApplicationList.jsp</result>
 			<result name="myTaskList">/WEB-INF/jsp/workflow/form/myTaskList.jsp</result>
+			<result name="approvedHistory">/WEB-INF/jsp/workflow/form/approvedHistory.jsp</result>
+			<result name="approveUI">/WEB-INF/jsp/workflow/form/approveUI.jsp</result>
+			
+			<!-- 下载申请表 -->
+			<result name="downloadApplication" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentType">application/octet-stream</param>
+				<param name="contentDisposition">attachment;filename="${#fileName}.doc"</param>
+			</result>
 		</action>
     </package>
 

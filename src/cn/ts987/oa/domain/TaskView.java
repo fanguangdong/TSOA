@@ -1,6 +1,6 @@
 package cn.ts987.oa.domain;
 
-import org.jbpm.api.task.Task;
+import org.activiti.engine.task.Task;
 
 /**
  * 只是在“待我审批”页面中显示数据时使用，不对应数据表
