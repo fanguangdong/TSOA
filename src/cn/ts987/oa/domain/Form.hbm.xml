@@ -11,7 +11,7 @@
 			<generator class="native"/>
 		</id>
 		
-		<set name="approveInfos" inverse="true">
+		<set name="approveInfos" inverse="true" order-by="approveTime ASC">
 			<key column="formId"></key>
 			<one-to-many class="ApproveInfo"/>
 		</set>
