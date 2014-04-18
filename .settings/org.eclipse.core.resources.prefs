@@ -1,5 +1,8 @@
-#Mon Apr 14 14:40:30 CST 2014
+#Thu Apr 17 16:37:01 CST 2014
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/jsp/common.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/home/index.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/home/right.jsp=UTF-8
+encoding//WebRoot/system/layout/left.jsp=UTF-8
+encoding//WebRoot/system/layout/main.jsp=UTF-8
 encoding/<project>=UTF-8

@@ -33,7 +33,9 @@
 		</global-results>
 		
 		<action name="home_*" class="homeAction" method="{1}">
-			<result name="{1}">/WEB-INF/jsp/home/{1}.jsp</result>
+			<result name="indexttttt">/WEB-INF/jsp/home/index.jsp</result> 
+			<result name="index">/system/layout/main.jsp</result> 
+			<result name="left">/system/layout/left.jsp</result> 
 		</action>
 		
 		<action name="role_*" class="roleAction" method="{1}">

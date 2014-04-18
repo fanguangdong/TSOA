@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="TSOA"
+  name="TSOAQui"
   id="myeclipse.1394593318819"
-  context-root="/TSOA"
+  context-root="/TSOAQui"
   j2ee-spec="6.0"
-  archive="TSOA.war">
+  archive="TSOAQui.war">
   <attributes>
-    <attribute name="webrootdir" value="WebRoot" />
+    <attribute name="webrootdir" value="/WebRoot" />
   </attributes>
 </project-module>
 
