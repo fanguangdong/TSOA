@@ -67,6 +67,8 @@ public class FormAction extends BaseAction<Form> {
 		
 		formFlowService.submit(form);
 		
+		Collection<FormTemplate> formTemplateList = formTemplateService.list();
+		ActionContext.getContext().put("formTemplateList", formTemplateList);
 		return "formTemplateList";
 	}
 	

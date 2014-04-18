@@ -10,14 +10,14 @@ public class FormTemplate implements Serializable{
 	
 	private String name;
 	
+	private String description;
+	
+	private String docType;
+	
 	private String pdKey;  //processDefinitionKey
 	
 	private String path;
 
-	
-	
-	
-	
 	
 	public Long getId() {
 		return id;
@@ -51,6 +51,20 @@ public class FormTemplate implements Serializable{
 		this.path = path;
 	}
 	
-	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDocType() {
+		return docType;
+	}
+
+	public void setDocType(String docType) {
+		this.docType = docType;
+	}
 	
 }

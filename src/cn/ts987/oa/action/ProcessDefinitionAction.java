@@ -30,7 +30,7 @@ public class ProcessDefinitionAction extends BaseAction<Object>{
 	public String list() {
 		Collection<ProcessDefinition> pdList = processDefinitionService.findAllLatestVersions();
 		ActionContext.getContext().put("pdList", pdList);
-		return "list";
+		return "list"; 
 	}
 	
 	public String addUI() {

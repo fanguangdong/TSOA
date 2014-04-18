@@ -11,6 +11,8 @@
 			<generator class="native"/>
 		</id>
 		<property name="name" type="java.lang.String" length="64"/>
+		<property name="description" type="java.lang.String" length="256"/>
+		<property name="docType" type="java.lang.String" length="16"/>
 		<property name="pdKey" type="java.lang.String" length="64"/>
 		<property name="path" type="java.lang.String" length="256"/>
 		
