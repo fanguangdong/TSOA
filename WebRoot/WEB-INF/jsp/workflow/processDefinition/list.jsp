@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title></title>
-<%@include file="../../../../commons/common.jsp" %>
+<%@include file="/commons/common.jsp" %>
 
 <!--框架必需start-->
 <script type="text/javascript" src="libs/js/jquery.js"></script>

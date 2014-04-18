@@ -16,6 +16,12 @@
 <link rel="stylesheet" type="text/css" id="skin" prePath="<%=request.getContextPath() %>/"/>
 <link rel="stylesheet" type="text/css" id="customSkin"/>
 <!--框架必需end-->
+
+<!-- 表单验证start -->
+<script src="libs/js/form/validationRule.js" type="text/javascript"></script>
+<script src="libs/js/form/validation.js" type="text/javascript"></script>
+<!-- 表单验证end -->
+
 </head>
 <body>
 <div id="scrollContent">
@@ -25,9 +31,9 @@
 			<table class="tableStyle">
 				<tr><td colspan="2"></td></tr>
 				
-				<tr><td width="150">请选择流程定义文档(zip格式)：</td> <td><input type="file" name="upload"/></td></tr>
+				<tr><td width="150">请选择流程定义文档(zip格式)：</td> <td><input type="file" name="upload" class="validate[required]"/> <span class="star">*</span></td></tr>
 				
-				<tr><td colspan="2"><input type="submit" value="提交"/>&nbsp;<input type="reset" value="重置"/></td></tr>
+				<tr><td colspan="2"><input type="submit" value="提交"/>&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返回"/></td></tr>
 				
 			</table>
 		</s:form>

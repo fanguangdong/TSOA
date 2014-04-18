@@ -1,81 +1,62 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>文档模板信息</title>
-    <%@ include file="/WEB-INF/jsp/common.jsp"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>添加流程模板</title>
+<%@ include file="/commons/common.jsp"%>
+
+
+<!--框架必需start-->
+<script type="text/javascript" src="libs/js/jquery.js"></script>
+<script type="text/javascript" src="libs/js/framework.js"></script>
+<link href="libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="<%=request.getContextPath() %>/"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!-- 表单验证start -->
+<script src="libs/js/form/validationRule.js" type="text/javascript"></script>
+<script src="libs/js/form/validation.js" type="text/javascript"></script>
+<!-- 表单验证end -->
+
 </head>
 <body>
-
-<!-- 标题显示 -->
-<div id="Title_bar">
-    <div id="Title_bar_Head">
-        <div id="Title_Head"></div>
-        <div id="Title"><!--页面标题-->
-            <img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 文档模板信息
-        </div>
-        <div id="Title_End"></div>
-    </div>
+<div id="scrollContent">
+	<div class="box2" panelWidth="500" panelTitle="添加流程模板" >
+	
+		<s:form action="formTemplate_%{id == null ? 'add' : 'update'}" enctype="multipart/form-data">
+			<s:hidden name="id"></s:hidden>
+			<table class="tableStyle">
+				<tr><td width="150">模板名称：</td>   <td><input type="text" name="name" class="validate[required]"/> <span class="star">*</span></td></tr> 
+				
+				<tr><td width="150">所用流程：</td>   
+					<td>
+						<s:select name="pdKey" list="#processDefinitionList" listKey="key" listValue="key" cssClass="validate[required]">
+						</s:select>  <span class="star"> *</span>
+					</td>
+				</tr>
+				
+				<tr><td width="150">模板描述：</td></td>    <td> <textarea name="description" rows="2" cols="3"></textarea> </td></tr>
+				
+				<tr><td width="150">模板文件(doc格式)：</td> <td width="50"><input type="file" name="upload" class="validate[required]"/>  </td> </tr>
+				
+				<!-- 
+				<tr><td colspan="2"><input type="submit" value="提交"/>&nbsp;<input type="reset" value="重置"/></td></tr>
+				 -->
+				<tr><td colspan="2"><input type="submit" value="提交"/>&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返回"/></td></tr>
+				
+			</table>
+		</s:form>
+	</div>
+	
+	
 </div>
+</body>
+</html>
 
-<!--显示表单内容-->
-<div id=MainArea>
-    <s:form action="formTemplate_%{id == null ? 'add' : 'update'}" enctype="multipart/form-data">
-    	<s:hidden name="id"></s:hidden>
-    
-        <div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="style/blue/images/item_point.gif" /> 模板基本信息 </div> 
-        </div>
-        
-        <!-- 表单内容显示 -->
-        <div class="ItemBlockBorder">
-            <div class="ItemBlock">
-                <table cellpadding="0" cellspacing="0" class="mainForm">
-				   	<tr>
-                        <td>模板名称</td>
-                        <td><s:textfield name="name" cssClass="InputStyle" />  *</td>
-                    </tr>
-                    <tr>
-                        <td>所用流程</td>
-                        <td>
-							<s:select name="pdKey" cssClass="SelectStyle" 
-								list="#processDefinitionList" listKey="key" listValue="key">
-							</s:select> *
-						</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-		
-		<div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="style/blue/images/item_point.gif" /> 模板文件 </div> 
-        </div>
-        
-        <!-- 表单内容显示 -->
-        <div class="ItemBlockBorder">
-            <div class="ItemBlock">
-                <table cellpadding="0" cellspacing="0" class="mainForm">
-				   	<tr>
-                        <td width="120px;">请选择文件(doc格式)</td>
-                        <td><input type="file" name="upload" class="InputStyle" style="width:450px;" /> </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        
-        <!-- 表单操作 -->
-        <div id="InputDetailBar">
-            <input type="image" src="style/images/save.png"/>
-            <a href="javascript:history.go(-1);"><img src="style/images/goBack.png"/></a>
-        </div>
-    </s:form>
-</div>
-
-<div class="Description">
-	说明：<br />
-	1，模板文件是doc扩展名的文件（Word文档）。<br />
-	2，如果是添加：必须要选择模板文件。<br />
-	3，如果是修改：只是在 需要更新模板文件时 才选择一个文件。
-</div>
 
 </body>
 </html>
