@@ -1,21 +1,74 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>审批处理</title>
-	<%@ include file="/WEB-INF/jsp/common.jsp" %>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>审批处理</title>
+<%@ include file="/commons/common.jsp"%>
+
+
+<!--框架必需start-->
+<script type="text/javascript" src="libs/js/jquery.js"></script>
+<script type="text/javascript" src="libs/js/framework.js"></script>
+<link href="libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="<%=request.getContextPath() %>/"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!-- 表单验证start -->
+<script src="libs/js/form/validationRule.js" type="text/javascript"></script>
+<script src="libs/js/form/validation.js" type="text/javascript"></script>
+<!-- 表单验证end -->
+
 </head>
 <body>
 
-<!-- 标题显示 -->
-<div id="Title_bar">
-    <div id="Title_bar_Head">
-        <div id="Title_Head"></div>
-        <div id="Title"><!--页面标题-->
-            <img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 审批处理
-        </div>
-        <div id="Title_End"></div>
-    </div>
+<div class="box2" panelTitle="操作面板" roller="false">
+	
+		<table>
+			<tr>
+				<td><button type="button" onclick="window.location.href='form_downloadApplication.action'"><span class="icon_doc">下载文档模板文件</span></button></td>
+				<td><div class="red">&nbsp;</div></td>
+			</tr>
+		</table>
+	
 </div>
+
+
+<div id="scrollContent">
+	<div class="box2" panelWidth="500" panelTitle="审批处理" >
+	
+		<s:form action="form_approve">
+			<s:hidden name="formId"></s:hidden>
+    		<s:hidden name="taskId"></s:hidden>
+    		<s:hidden name="approval" value="true"></s:hidden>
+    		
+			<table class="tableStyle" formMode="transparent">
+				<tr>
+					<td>审批意见</td>
+                    <td><s:textarea name="comments"/></td>
+				</tr> 
+				
+				<tr>
+					<td><input type="submit" value="同意"/></td>
+					<td><input type=submit onclick="document.forms[0].approval.value = 'false'" value="不同意"/></td>
+					<td><input type="button" onclick="history.back()" value="返回"/></td>
+				</tr>
+				
+			</table>
+			
+			
+			
+		</s:form>
+	</div>
+	
+</div>
+</body>
+</html>
+
+
 
 <!--显示表单内容-->
 <div id=MainArea>
@@ -37,9 +90,7 @@
             </div>
         </div>
 	
-		<div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="style/blue/images/item_point.gif" /> 审批信息 </div> 
-        </div>
+		
         <div class="ItemBlockBorder">
             <div class="ItemBlock">
                 <table cellpadding="0" cellspacing="0" class="mainForm">

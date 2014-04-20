@@ -22,6 +22,18 @@
 <script src="libs/js/form/validation.js" type="text/javascript"></script>
 <!-- 表单验证end -->
 
+<script type="text/javascript">
+	function validateFile() {
+		var fileValue = $("#fu").val();
+		if(!fileValue) {
+			top.Dialog.alert("请选择需要上传的文件|表单验证错误", function(){ });
+			return false;
+		} else {
+			return true;
+		}
+	}
+</script>
+
 </head>
 <body>
 <div id="scrollContent">
@@ -31,9 +43,9 @@
 			<table class="tableStyle">
 				<tr><td colspan="2"></td></tr>
 				
-				<tr><td width="150">请选择流程定义文档(zip格式)：</td> <td><input type="file" name="upload" class="validate[required]"/> <span class="star">*</span></td></tr>
+				<tr><td width="150">请选择流程定义文档(zip格式)：</td> <td><input type="file" id="fu" name="upload" class="validate[required]"/> <span class="star">*</span></td></tr>
 				
-				<tr><td colspan="2"><input type="submit" value="提交"/>&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返回"/></td></tr>
+				<tr><td colspan="2"><input type="submit" value="提交" onclick="return validateFile();"/>&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返回"/></td></tr>
 				
 			</table>
 		</s:form>

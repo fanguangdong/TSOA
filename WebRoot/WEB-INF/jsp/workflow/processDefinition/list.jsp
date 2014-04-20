@@ -57,7 +57,7 @@
 			<td><input id="query_userName" type="text"/></td>
 			<td><button type="button" onclick="searchHandler()"><span class="icon_find">查询</span></button></td>
 			 -->
-			<td><button type="button" onclick="window.location.href='processDefinition_addUI.action'"><span class="icon_reload">部署流程定义文档</span></button></td>
+			<td><button type="button" onclick="window.location.href='processDefinition_addUI.action'"><span class="icon_add">部署流程定义文档</span></button></td>
 			<td><div class="red">&nbsp;</div></td>
 		</tr>
 	</table>
@@ -88,7 +88,6 @@
 
  -->
 <div id="scrollContent" >
-	<form action="/userAction.do?method=getUsersBasic" method="post" id="usersForm">
 	<table class="tableStyle" useClick="false"  useCheckBox="true" sortMode="true">
 	
 		<tr>
@@ -117,34 +116,13 @@
 				</td>
 			</tr>
         </s:iterator>
-		
-		
-		<!-- 
-		<tr>
-			<td><input type="checkbox"/></td>
-			<td>张小三</td>
-			<td>zhangsan</td>
-			<td>市场部</td>
-	
-			<td><span class="img_view hand" title="查看流程图" onclick="onView()"></span><span class="img_edit hand" title="修改" onclick="onEdit()"></span><span class="img_delete hand" title="删除" onclick="onDelete()"></span></td>
-		</tr>
-		
-		<tr>
-			<td><input type="checkbox"/></td>
-			<td>张小三</td>
-			<td>zhangsan</td>
-			<td>市场部</td>
-	
-			<td><span class="img_view hand" title="查看" onclick="onView()"></span><span class="img_edit hand" title="修改" onclick="onEdit()"></span><span class="img_delete hand" title="删除" onclick="onDelete()"></span></td>
-		</tr>
-		 -->
-		
+        
 	</table>
-	</form>
 </div>
+
 <div style="height:35px;">
 	<div class="float_left padding5">
-		数据共200条
+		数据共   条
 	</div>
 	<div class="float_right padding5">
 		<div class="pageNumber" total="200" pageSize="20" showSelect="true" showInput="true" id="pageContent"></div>
@@ -153,46 +131,7 @@
 </div>
 <script type="text/javascript">
 
-///添加
-	function addUser() {
-		top.Dialog.open({URL:"../../sample/layout/user-management-content.html",Title:"新增",Width:500,Height:330}); 
-	}
-	
-	//批量删除
-	function deleteUser() {
-		top.Dialog.alert("向后台发送ajax请求来批量删除。见JAVA版或.NET版演示。");
-	}
-	
-	//导入
-	function importUser() {
-		top.Dialog.alert("见JAVA版或.NET版演示。");
-	}
-	//导出
-	function exportUser() {
-		top.Dialog.alert("见JAVA版或.NET版演示。");
-	}
-	
-	//导出所有
-	function exportUser2() {
-		top.Dialog.alert("见JAVA版或.NET版演示。");
-	}
-	
-	//查看
-	function onView(){
-		top.Dialog.open({URL:"../../sample/layout/user-management-content2.html",Title:"查看",Width:500,Height:330}); 
-	}
-	
-	//修改
-	function onEdit(){
-		top.Dialog.alert("见JAVA版或.NET版演示。");
-	}
-	
-	//删除
-	function onDelete(){
-		top.Dialog.confirm("确定要删除该记录吗？",function(){
-		  	top.Dialog.alert("向后台发送ajax请求来删除。见JAVA版或.NET版演示。");
-		});
-	}
+
 </script>
 </body>
 </html>

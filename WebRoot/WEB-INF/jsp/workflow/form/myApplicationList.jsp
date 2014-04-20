@@ -1,68 +1,100 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>我的申请查询</title>
-    <%@ include file="/WEB-INF/jsp/common.jsp"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<%@include file="/commons/common.jsp" %>
+
+<!--框架必需start-->
+<script type="text/javascript" src="libs/js/jquery.js"></script>
+<script type="text/javascript" src="libs/js/framework.js"></script>
+<link href="libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="<%=request.getContextPath() %>/"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!-- 日期选择框start -->
+<script type="text/javascript" src="libs/js/form/datePicker/WdatePicker.js"></script>
+<!-- 日期选择框end -->
+
+<!--数字分页start-->
+<script type="text/javascript" src="libs/js/nav/pageNumber.js"></script>
+<!--数字分页end-->
+
 </head>
 <body>
 
-<div id="Title_bar">
-    <div id="Title_bar_Head">
-        <div id="Title_Head"></div>
-        <div id="Title"><!--页面标题-->
-            <img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 我的申请查询
-        </div>
-        <div id="Title_End"></div>
-    </div>
-</div>
-
-
-<div id="QueryArea">
-	<div style="height: 30px">
-		
-		<s:form action="formFlowAction_myApplicationList">
-			<table border=0 cellspacing=3 cellpadding=5>
-				<tr>
-					<td>按条件查询：</td>
-					<td>
-						<s:select name="formTemplateId" cssClass="SelectStyle" 
-							list="#formTemplateList" listKey="id" listValue="name"
-							headerKey="" headerValue="查看全部模板">
-						</s:select>
-					</td>
-					<td>
-						<s:select name="status" cssClass="SelectStyle" 
-							list="{'审批中', '未通过', '已通过'}"
-							headerKey="" headerValue="查看全部状态">
-						</s:select>
-					</td>
-					<td><a href=""><input type="image" src="style/blue/images/button/query.PNG"/></a></td>
-				</tr>
-			</table>
-		</s:form>
-		
-	</div>
-</div>
-
-<div id="MainArea">
-    <table cellspacing="0" cellpadding="0" class="TableStyle">
-        <!-- 表头-->
-        <thead>
-            <tr align="CENTER" valign="MIDDLE" id="TableTitle">
-				<td width="250px">标题</td>
-				<td width="115px">申请人</td>
-				<td width="115px">申请日期</td>
-				<td width="115px">当前状态</td>
-				<td>相关操作</td>
-			</tr>
-		</thead>	
-				
-		<!--显示数据列表：正在审批或审批完成的表单显示示例-->
-        <tbody id="TableData" class="dataContainer">
-			<!-- 正在审批或审批完成的表单显示示例 -->
+ 
+<div class="box2" panelTitle="我的申请列表" roller="false">
+	<table>
+		<tr>
+			 
+			<td>流程名称：</td>
+			<td><input id="query_userName" type="text"/></td>
 			
+			<td>当前状态:</td>
+			<td>
+				<select id="dd">
+					<option value="0">请选择</option>
+					<option value="1">审批中</option>
+					<option value="2">已通过</option>
+					<option value="3">未通过</option>
+				</select>
+			</td>
+				
+			<td>时间：</td>
+			<td><input type="text" class="date"/></td>
+			
+			
+			<td><button type="button" onclick="searchHandler()"><span class="icon_find">查询</span></button></td>
+			 
+			<td><div class="red">&nbsp;</div></td>
+		</tr>
+	</table>
+</div>
+
+<!--
+<div class="box_tool_min padding_top2 padding_bottom2 padding_right5">
+	<div class="center">
+	<div class="left">
+	<div class="right">
+		<div class="padding_top5 padding_left10">
+		<a href="javascript:;" onclick="addUser()"><span class="icon_add">新增用户</span></a>
+		<div class="box_tool_line"></div>
+		<a href="javascript:;" onclick="deleteUser()"><span class="icon_delete">批量删除</span></a>
+		<div class="box_tool_line"></div>
+		<a href="javascript:;" onclick="importUser()"><span class="icon_import">导入</span></a>
+		<div class="box_tool_line"></div>
+		<a href="javascript:;" onclick="exportUser()"><span class="icon_export">导出当前页</span></a>
+		<div class="box_tool_line"></div>
+		<a href="javascript:;"  onclick="exportUser2()"><span class="icon_export">导出全部</span></a>
+		<div class="clear"></div>
+		</div>
+	</div>		
+	</div>	
+	</div>
+	<div class="clear"></div>
+</div> 
+
+ -->
+<div id="scrollContent" >
+	<form action="/userAction.do?method=getUsersBasic" method="post" id="usersForm">
+	
+	<table class="tableStyle" useClick="false"  useCheckBox="true" sortMode="true">
+		<tr>
+			<th width="1"></th>
+			<th width="5"><span>标题</span></th>
+			<th width="10"><span>申请人</span></th>
+			<th width="1"><span>申请日期</span></th>
+			<th width="30"><span>当前状态</span></th>
+			<th width="40">相关操作</th>
+		</tr>
+		
 		<s:iterator value="#recordList">
-			<tr class="TableDetail1 template">
+			<tr>
+				<td><input type="checkbox"/></td>
 				<td>${title}</td>
 				<td>${applicant.name}&nbsp;</td>
 				<td>${applyTime}&nbsp;</td>
@@ -70,28 +102,33 @@
 					<s:if test="status=='未通过'"><font color='red'>未通过</font></s:if>
 					<s:if test="status=='已通过'"><font color='green'>已通过</font></s:if>
 					<s:if test="status=='审批中'"><font color='blue'>审批中</font></s:if>
-				</td>   
+				</td> 
 				<td>
 					<s:a action="form_approvedHistory?formId=%{id}">查看流转记录</s:a>
 					<s:a action="form_delete?formId=%{id}" onClick="return window.confirm('确定要删除此条流转记录?')">&nbsp;删除</s:a>
 				</td>
+				
 			</tr>
-		</s:iterator>	
-			
-        </tbody>
-    </table>
-    
-    <!-- 其他功能超链接 -->
-    <div id="TableTail"><div id="TableTail_inside"></div></div>
+        </s:iterator>
+		
+	</table>
+	</form>
 </div>
 
-
-
-<div class="Description">
-	说明：<br />
-	1，排序是：按申请时间降序排列（最后的申请在最前面）。<br>
+<div style="height:35px;">
+	<div class="float_left padding5">
+		数据共   条
+	</div>
+	<div class="float_right padding5">
+		<div class="pageNumber" total="200" pageSize="20" showSelect="true" showInput="true" id="pageContent"></div>
+	</div>
+	<div class="clear"></div>
 </div>
+<script type="text/javascript">
 
+
+</script>
 </body>
 </html>
+
 	
