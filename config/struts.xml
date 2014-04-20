@@ -29,7 +29,7 @@
 		
 		<global-results>
 			<result name="illegalReq">/WEB-INF/jsp/illegalReq.jsp</result> 
-			<result name="loginUI">/WEB-INF/jsp/user/loginUI.jsp</result>  
+			<result name="loginUI">/system/login/login.jsp</result>  
 		</global-results>
 		
 		<action name="home_*" class="homeAction" method="{1}">
@@ -57,11 +57,11 @@
 			<result name="saveUI">/WEB-INF/jsp/user/saveUI.jsp?id=0</result> 
 			
 			
-			<result name="loginFailed">/WEB-INF/jsp/user/loginUI.jsp</result>  
+			<result name="loginFailed">/system/login/login.jsp</result>  
 			
 			<result name="toIndex" type="redirectAction">home_index</result>
-			<result name="logout">/WEB-INF/jsp/user/logout.jsp</result>
-			<result name="input">/WEB-INF/jsp/user/loginUI.jsp</result>
+			<result name="logout">/system/login/login.jsp</result>
+			<result name="input">/system/login/login.jsp</result>
 		</action>
 		
 		

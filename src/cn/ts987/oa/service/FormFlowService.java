@@ -95,7 +95,7 @@ public class FormFlowService extends BaseService{
 		}
 		return taskViewList;
 	}
-
+	
 	/**
 	 * 审批
 	 * @param taskId
@@ -348,7 +348,7 @@ public class FormFlowService extends BaseService{
         ActivityImpl activeActivity = findActivityImpl(activitiList, activitiId);
         ActivityImpl endActivity = findEndActivityImpls(activitiList).get(0);
 
-        List<PvmTransition> pvmTransitionList = activeActivity.getOutgoingTransitions();//获取当前节点的所以出口（这个方法做的不好，应该返回List<TransitionImpl>才对的，这样就不用下面的强转换了，我想以后版本会改了这点）
+        List<PvmTransition> pvmTransitionList = activeActivity.getOutgoingTransitions();//获取当前节点的所有出口（这个方法做的不好，应该返回List<TransitionImpl>才对的，这样就不用下面的强转换了，我想以后版本会改了这点）
         for (PvmTransition pvmTransition : pvmTransitionList) {
             TransitionImpl transitionImpl = (TransitionImpl) pvmTransition;//强转为TransitionImpl
             transitionImpl.setDestination(endActivity);
